@@ -249,10 +249,7 @@ function attachEditor(editor) {
     observer.observe(editor.container.$);
     editor.on("destroy", () => observer.disconnect());
   }
-  if (editor.focusManager?.hasFocus) {
-    activeEditor = editor;
-    refresh();
-  }
+  scheduleUpdate(editor);
   syncEditorTheme(editor);
 }
 
@@ -285,8 +282,13 @@ function onShortcut(editor, evt) {
   editor.execCommand(command);
 }
 
+function isPageEditor(editor) {
+  const root = editor?.container?.$;
+  return Boolean(root && root.closest("#editcolumn, #mainEditArea, #xwikieditcontent"));
+}
+
 function scheduleUpdate(editor) {
-  if (editor) activeEditor = editor;
+  if (editor && (isPageEditor(editor) || !activeEditor || !isPageEditor(activeEditor))) activeEditor = editor;
   cancelAnimationFrame(updateFrame);
   updateFrame = requestAnimationFrame(() => {
     updateToolbar();
@@ -307,12 +309,15 @@ function updateToolbar() {
     hideToolbar();
     return;
   }
-  const rect = viewportRect(editor, table);
-  if (rect.width === 0 && rect.height === 0) {
+  const rect = anchorRect(editor, cells);
+  if (!rect || (rect.width === 0 && rect.height === 0)) {
     hideToolbar();
     return;
   }
   toolbar.hidden = false;
+  toolbar.style.visibility = "hidden";
+  placeAbove(toolbar, rect);
+  toolbar.style.visibility = "";
   syncCommands(editor);
   syncActions(cells);
   syncSwatches(cells);
@@ -579,10 +584,10 @@ function mountEditorTools(editor) {
   if (!host) {
     host = document.createElement("span");
     host.className = "cke_toolbar bx-cke-tools";
-    toolbox.append(host);
+    toolbox.prepend(host);
   }
+  if (host.contains(toolbar)) document.body.append(toolbar);
   if (!host.contains(editorBar)) host.append(editorBar);
-  if (!host.contains(toolbar)) host.append(toolbar);
 }
 
 function parkEditorTools() {
@@ -705,10 +710,9 @@ function toggleFullscreen(editor) {
   const bottom = on && bottomBar ? bottomBar.offsetHeight + 8 : 0;
   document.documentElement.style.setProperty("--bx-fullscreen-bottom", `${bottom}px`);
   syncFullscreenReserve();
-  const topHeight = editor.ui.space("top")?.$.offsetHeight || 0;
   if (on) {
     box.dataset.bxHeight = String(editor.ui.space("contents")?.$.offsetHeight || 400);
-    const available = window.innerHeight - topHeight - bottom - 8;
+    const available = window.innerHeight - bottom - 16;
     editor.resize("100%", Math.max(160, available), true);
   } else {
     editor.resize("100%", Number(box.dataset.bxHeight) || 400, true);
@@ -1217,6 +1221,52 @@ function viewportRect(editor, element) {
   };
 }
 
+function anchorRect(editor, cells) {
+  const frame = editor.window?.getFrame?.()?.$;
+  const frameRect = frame ? frame.getBoundingClientRect() : { top: 0, left: 0 };
+  const toViewport = (rect) => ({
+    top: frameRect.top + rect.top,
+    left: frameRect.left + rect.left,
+    bottom: frameRect.top + rect.bottom,
+    right: frameRect.left + rect.right,
+    width: rect.width,
+    height: rect.height,
+  });
+  if (cells.length > 1) {
+    let top = Infinity;
+    let left = Infinity;
+    let right = -Infinity;
+    let bottom = -Infinity;
+    for (const cell of cells) {
+      const rect = cell.$.getBoundingClientRect();
+      top = Math.min(top, rect.top);
+      left = Math.min(left, rect.left);
+      right = Math.max(right, rect.right);
+      bottom = Math.max(bottom, rect.bottom);
+    }
+    return toViewport({ top, left, right, bottom, width: Math.max(1, right - left), height: Math.max(1, bottom - top) });
+  }
+  const native = editor.getSelection()?.getNative();
+  if (native?.rangeCount) {
+    const range = native.getRangeAt(0);
+    const rect = range.getClientRects()[0] || range.getBoundingClientRect();
+    if (rect && (rect.width > 0 || rect.height > 0)) return toViewport(rect);
+  }
+  return cells[0] ? viewportRect(editor, cells[0]) : null;
+}
+
+function placeAbove(panel, rect) {
+  const margin = 8;
+  const width = panel.offsetWidth || 280;
+  const height = panel.offsetHeight || 40;
+  let top = rect.top - height - margin;
+  if (top < margin) top = Math.min(rect.bottom + margin, window.innerHeight - height - margin);
+  let left = rect.left + rect.width / 2 - width / 2;
+  left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
+  panel.style.top = `${Math.round(top)}px`;
+  panel.style.left = `${Math.round(left)}px`;
+}
+
 function placeBeside(panel, rect) {
   const margin = 8;
   const width = panel.offsetWidth || 220;
@@ -1255,6 +1305,7 @@ function icon(first, second, secondStroke = "currentColor") {
 function buildToolbar() {
   const bar = floatingBar("betterxwiki-toolbar", "Outils de tableau Better xWiki");
   bar.append(
+    colorGroup(),
     commandGroup("tableRows", [
       ["rowInsertBefore", "Insérer une ligne au-dessus", ICONS.rowBefore],
       ["rowInsertAfter", "Insérer une ligne en dessous", ICONS.rowAfter],
@@ -1277,7 +1328,6 @@ function buildToolbar() {
       ["moveColumnLeft", "Déplacer la colonne vers la gauche", ICONS.moveLeft],
       ["moveColumnRight", "Déplacer la colonne vers la droite", ICONS.moveRight],
     ]),
-    colorGroup(),
     actionGroup("tableBandColors", [
       ["colorRow", "Colorier la ligne", ICONS.colorRow],
       ["colorColumn", "Colorier la colonne", ICONS.colorCol],
