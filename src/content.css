@@ -1221,8 +1221,8 @@ html.bx-themed #xwikicontent .box {
   border-radius: 12px;
 }
 
-html.bx-themed .cke,
-html.bx-themed .cke_chrome {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon),
+html.bx-themed .cke_chrome:not(.cke_float):not(.cke_balloon) {
   border: 1px solid var(--xwiki-border-color) !important;
   border-radius: 14px !important;
   overflow: hidden;
@@ -1235,16 +1235,16 @@ html.bx-themed .cke_contents {
   overflow: hidden;
 }
 
-html.bx-themed .cke_inner,
-html.bx-themed .cke_bottom,
-html.bx-themed .cke_toolbox {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_inner,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_bottom,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbox {
   background: var(--card-bg) !important;
   background-image: none !important;
   border: 0 !important;
   box-shadow: none !important;
 }
 
-html.bx-themed .cke_top {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_top {
   position: static !important;
   top: auto !important;
   right: auto !important;
@@ -1262,12 +1262,12 @@ html.bx-themed .cke_top {
   box-shadow: none !important;
 }
 
-html.bx-themed .cke_toolbox {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbox {
   display: block !important;
   width: auto;
 }
 
-html.bx-themed .cke_toolbar {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbar {
   float: left !important;
   display: block !important;
   width: auto !important;
@@ -1281,13 +1281,13 @@ html.bx-themed .cke_toolbox .bx-cke-tools {
   width: auto !important;
 }
 
-html.bx-themed .cke_toolbar_start,
-html.bx-themed .cke_toolbar_end,
-html.bx-themed .cke_toolbar_break {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbar_start,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbar_end,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbar_break {
   display: none !important;
 }
 
-html.bx-themed .cke_bottom {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_bottom {
   background: var(--card-bg) !important;
   border-top: 1px solid var(--xwiki-border-color) !important;
   padding: 4px 10px !important;
@@ -1296,7 +1296,7 @@ html.bx-themed .cke_bottom {
 html.bx-apple .cke_contents { background: #ffffff !important; }
 html.bx-dracula .cke_contents { background: #282a36 !important; }
 
-html.bx-themed .cke_toolgroup {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolgroup {
   float: left !important;
   display: inline-flex !important;
   flex-direction: row;
@@ -1312,9 +1312,9 @@ html.bx-themed .cke_toolgroup {
   box-shadow: none !important;
 }
 
-html.bx-themed a.cke_button,
-html.bx-themed a.cke_button_off,
-html.bx-themed a.cke_button_disabled {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button_off,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button_disabled {
   float: none !important;
   position: relative;
   display: inline-flex !important;
@@ -1331,7 +1331,7 @@ html.bx-themed a.cke_button_disabled {
   outline: 0 !important;
 }
 
-html.bx-themed .cke_button_icon {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_button_icon {
   float: none !important;
   display: block !important;
   width: 16px !important;
@@ -1339,30 +1339,30 @@ html.bx-themed .cke_button_icon {
   margin: 0 !important;
 }
 
-html.bx-themed .cke_button_label {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_button_label {
   display: none !important;
 }
 
-html.bx-themed a.cke_button:hover,
-html.bx-themed a.cke_button:focus,
-html.bx-themed a.cke_button:active,
-html.bx-themed .cke_combo_button:hover,
-html.bx-themed .cke_combo_on .cke_combo_button {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button:hover,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button:focus,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button:active,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo_button:hover,
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo_on .cke_combo_button {
   background: var(--sidebar-hover) !important;
   background-image: none !important;
   box-shadow: none !important;
 }
 
-html.bx-themed a.cke_button_on {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button_on {
   background: var(--component-active-bg) !important;
   box-shadow: none !important;
 }
 
-html.bx-dracula a.cke_button_on {
+html.bx-dracula .cke:not(.cke_float):not(.cke_balloon) a.cke_button_on {
   background: #f8f8f2 !important;
 }
 
-html.bx-themed a.cke_button_disabled {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) a.cke_button_disabled {
   opacity: 0.38 !important;
 }
 
@@ -1374,17 +1374,17 @@ html.bx-themed .cke_combo_label {
   font-family: var(--font-family-base) !important;
 }
 
-html.bx-apple a.cke_button_on .cke_button_icon {
+html.bx-apple .cke:not(.cke_float):not(.cke_balloon) a.cke_button_on .cke_button_icon {
   filter: brightness(0) invert(1);
 }
 
-html.bx-themed .cke_combo {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo {
   float: left !important;
   display: inline-block !important;
   width: auto !important;
 }
 
-html.bx-themed .cke_combo_button {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo_button {
   display: inline-flex !important;
   align-items: center;
   justify-content: flex-start;
@@ -1400,7 +1400,7 @@ html.bx-themed .cke_combo_button {
   box-shadow: none !important;
 }
 
-html.bx-themed .cke_combo_text {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo_text {
   display: inline-block !important;
   float: none !important;
   width: auto !important;
@@ -1416,13 +1416,13 @@ html.bx-themed .cke_combo_text {
   text-align: left;
 }
 
-html.bx-themed .cke_combo_open {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_combo_open {
   float: none !important;
   position: static !important;
   margin: 0 !important;
 }
 
-html.bx-themed .cke_toolbar_separator {
+html.bx-themed .cke:not(.cke_float):not(.cke_balloon) .cke_toolbar_separator {
   float: none !important;
   display: inline-block !important;
   align-self: center;
@@ -1448,9 +1448,15 @@ html.bx-themed .cke_path a:focus {
   background: transparent !important;
 }
 
-html.bx-dracula .cke_button_icon,
-html.bx-dracula .cke_combo_arrow,
-html.bx-dracula .cke_button_arrow {
+html.bx-dracula .cke:not(.cke_float):not(.cke_balloon) .cke_button_icon,
+html.bx-dracula .cke:not(.cke_float):not(.cke_balloon) .cke_combo_arrow,
+html.bx-dracula .cke:not(.cke_float):not(.cke_balloon) .cke_button_arrow,
+html.bx-dracula .cke_float .cke_button_icon,
+html.bx-dracula .cke_float .cke_combo_arrow,
+html.bx-dracula .cke_float .cke_button_arrow,
+html.bx-dracula .cke_balloon .cke_button_icon,
+html.bx-dracula .cke_balloon .cke_combo_arrow,
+html.bx-dracula .cke_balloon .cke_button_arrow {
   filter: brightness(0) invert(1);
 }
 
@@ -1459,8 +1465,205 @@ html.bx-dracula .cke_button__bgcolor .cke_button_icon {
   filter: none;
 }
 
-html.bx-dracula a.cke_button_on .cke_button_icon {
+html.bx-dracula .cke:not(.cke_float):not(.cke_balloon) a.cke_button_on .cke_button_icon {
   filter: brightness(0);
+}
+
+html.bx-themed .cke_balloon .cke_inner,
+html.bx-themed .cke_balloon .cke_top,
+html.bx-themed .cke_balloon .cke_toolbox,
+html.bx-themed .cke_balloon .cke_balloon_content {
+  background: var(--card-bg) !important;
+  background-image: none !important;
+}
+
+html.bx-themed .cke_balloon .cke_button_label,
+html.bx-themed .cke_balloon .cke_combo_text {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+
+html.bx-themed:has(#xwikicontent.cke_editable) #mainContentArea,
+html.bx-themed:has(#xwikicontent.cke_editable) #contentcolumn .main > #hierarchy_breadcrumb {
+  margin-right: 108px !important;
+}
+
+html.bx-themed .cke_float {
+  position: fixed !important;
+  top: 72px !important;
+  right: 12px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 84px !important;
+  max-height: calc(100vh - 88px) !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: auto !important;
+  z-index: 9999 !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 16px !important;
+  background: var(--card-bg) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18) !important;
+}
+
+html.bx-themed .cke_float .cke_inner,
+html.bx-themed .cke_float .cke_top,
+html.bx-themed .cke_float .cke_toolbox {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_float .cke_top {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 8px !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+
+html.bx-themed .cke_float .cke_toolbox {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  width: auto !important;
+}
+
+html.bx-themed .cke_float .cke_toolbar,
+html.bx-themed .cke_float .bx-cke-tools {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+}
+
+html.bx-themed .cke_float .cke_toolbar_start,
+html.bx-themed .cke_float .cke_toolbar_end,
+html.bx-themed .cke_float .cke_toolbar_break,
+html.bx-themed .cke_float .cke_toolbar_separator {
+  display: none !important;
+}
+
+html.bx-themed .cke_float .cke_toolgroup,
+html.bx-themed .cke_float .bx-group {
+  float: none !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: auto !important;
+  margin: 0 0 6px !important;
+  padding: 2px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: var(--search-fill) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_float a.cke_button,
+html.bx-themed .cke_float a.cke_button_off,
+html.bx-themed .cke_float a.cke_button_disabled,
+html.bx-themed .cke_float #betterxwiki-editorbar button {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_float .cke_button_icon {
+  float: none !important;
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+}
+
+html.bx-themed .cke_float .cke_button_label,
+html.bx-themed .cke_float .cke_button_label.cke_button__basicstyles_label {
+  display: none !important;
+}
+
+html.bx-themed .cke_float a.cke_button:hover,
+html.bx-themed .cke_float a.cke_button:focus,
+html.bx-themed .cke_float #betterxwiki-editorbar button:hover {
+  background: var(--sidebar-hover) !important;
+}
+
+html.bx-themed .cke_float a.cke_button_on {
+  background: var(--component-active-bg) !important;
+}
+
+html.bx-apple .cke_float a.cke_button_on .cke_button_icon {
+  filter: brightness(0) invert(1);
+}
+
+html.bx-themed .cke_float .cke_combo {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  margin: 0 0 6px !important;
+}
+
+html.bx-themed .cke_float .cke_combo_button {
+  display: flex !important;
+  align-items: center;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: var(--search-fill) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_float .cke_combo_text {
+  display: block !important;
+  float: none !important;
+  width: auto !important;
+  max-width: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 !important;
+  color: var(--text-color) !important;
+  font-size: 11px !important;
+  font-weight: 650;
+  line-height: 22px !important;
+  text-shadow: none !important;
+}
+
+html.bx-themed .cke_float #betterxwiki-editorbar {
+  position: static !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_float #betterxwiki-editorbar[hidden] {
+  display: none !important;
 }
 
 html.bx-themed .cke_panel {

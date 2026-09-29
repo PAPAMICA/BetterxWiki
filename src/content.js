@@ -567,8 +567,8 @@ function cleanTableHtml(html) {
 function updateEditorChrome() {
   const editor = activeEditor;
   const alive = settingsReady && editor && editor.status !== "destroyed" && editor.mode === "wysiwyg";
-  if (alive) mountEditorTools(editor);
-  const showBar = alive && ["alertBlocks", "macroShortcuts", "editorFullscreen"].some(enabled);
+  const mounted = alive && mountEditorTools(editor);
+  const showBar = mounted && ["alertBlocks", "macroShortcuts", "editorFullscreen"].some(enabled);
   editorBar.hidden = !showBar;
   if (showBar) {
     editorBar.querySelector('[data-action="fullscreen"]')?.setAttribute("aria-pressed", editor.container.$.classList.contains("bx-fullscreen") ? "true" : "false");
@@ -578,8 +578,9 @@ function updateEditorChrome() {
 }
 
 function mountEditorTools(editor) {
+  if (editor.container?.$.classList.contains("cke_balloon")) return false;
   const toolbox = editor.container?.$.querySelector(".cke_toolbox");
-  if (!toolbox) return;
+  if (!toolbox) return false;
   let host = toolbox.querySelector(".bx-cke-tools");
   if (!host) {
     host = document.createElement("span");
@@ -588,6 +589,7 @@ function mountEditorTools(editor) {
   }
   if (host.contains(toolbar)) document.body.append(toolbar);
   if (!host.contains(editorBar)) host.append(editorBar);
+  return true;
 }
 
 function parkEditorTools() {
