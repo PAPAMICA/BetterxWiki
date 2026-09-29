@@ -23,7 +23,7 @@ Les couleurs sont enregistrées comme couleur de fond, donc elles restent après
 
 ## Apparence
 
-Le thème épuré allège l’interface xWiki : fond gris clair, feuille de contenu blanche, typographie système, boutons arrondis et panneaux plus calmes. Il se désactive comme les autres fonctions.
+Le thème épuré reprend l’habillage Flamingo : barre sombre pour garder le logo lisible, fond gris clair, navigation latérale sans cadres, boutons en pastilles et tableaux en lignes simples. Il se désactive comme les autres fonctions.
 
 ## Lecture
 

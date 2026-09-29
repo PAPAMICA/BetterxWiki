@@ -216,7 +216,7 @@ html.bx-sticky #xwikicontent table > tbody > tr:first-child > th {
 }
 
 html.bx-apple,
-html.bx-apple body {
+html.bx-apple body.skin-flamingo {
   background: #f5f5f7 !important;
   color: #1d1d1f;
 }
@@ -226,67 +226,173 @@ html.bx-apple body {
   -webkit-font-smoothing: antialiased;
 }
 
-html.bx-apple #headerglobal,
-html.bx-apple header.navbar,
-html.bx-apple .navbar,
-html.bx-apple .navbar-default,
-html.bx-apple .navbar-inverse {
-  background: rgba(255, 255, 255, 0.8) !important;
+html.bx-apple #xwikimaincontainer,
+html.bx-apple #xwikimaincontainerinner,
+html.bx-apple #contentcontainer,
+html.bx-apple #headerglobal {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-apple #menuview,
+html.bx-apple #menuview header.navbar,
+html.bx-apple body.skin-flamingo header.navbar.navbar-default,
+html.bx-apple body.skin-flamingo header.navbar.navbar-default .container,
+html.bx-apple body.skin-flamingo header.navbar.navbar-default .container-fluid {
+  background: #1d1d1f !important;
   background-image: none !important;
   border: 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: none !important;
-  backdrop-filter: saturate(180%) blur(20px);
 }
 
-html.bx-apple #headerglobal a,
-html.bx-apple .navbar a,
-html.bx-apple .navbar-brand,
-html.bx-apple .navbar-nav > li > a,
-html.bx-apple .navbar-inverse .navbar-nav > li > a,
-html.bx-apple .navbar-inverse .navbar-brand {
+html.bx-apple #menuview .navbar-nav > li > a,
+html.bx-apple #menuview .navbar-brand,
+html.bx-apple #menuview .icon-navbar,
+html.bx-apple #menuview #tmDrawerActivator,
+html.bx-apple #menuview .btn-link,
+html.bx-apple #companylogo a {
+  color: #fff !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-apple #menuview .navbar-nav > li > a:hover,
+html.bx-apple #menuview .navbar-nav > li > a:focus,
+html.bx-apple #menuview #tmDrawerActivator:hover,
+html.bx-apple #menuview .btn-link:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  border-radius: 999px;
+}
+
+html.bx-apple #tmNotifications .badge,
+html.bx-apple #menuview .badge {
+  background: #ff3b30 !important;
+  color: #fff !important;
+}
+
+html.bx-apple #globalsearch .form-control,
+html.bx-apple #headerglobalsearchinput,
+html.bx-apple #leftPanels input[type="text"],
+html.bx-apple #leftPanels input[type="search"] {
+  background: #fff !important;
+  color: #1d1d1f !important;
+  border: 1px solid #d2d2d7 !important;
+  border-radius: 10px 0 0 10px !important;
+  box-shadow: none !important;
+}
+
+html.bx-apple #globalsearch .btn,
+html.bx-apple #leftPanels .btn-primary {
+  background: #0071e3 !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 0 10px 10px 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-apple #leftPanels,
+html.bx-apple #rightPanels {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-apple #leftPanels .panel,
+html.bx-apple #rightPanels .panel {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin-bottom: 4px;
+}
+
+html.bx-apple #leftPanels .panel-heading,
+html.bx-apple #rightPanels .panel-heading,
+html.bx-apple #leftPanels .panel-title,
+html.bx-apple #rightPanels .panel-title {
+  background: transparent !important;
+  border: 0 !important;
+  color: #1d1d1f !important;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+html.bx-apple #leftPanels a,
+html.bx-apple #rightPanels a,
+html.bx-apple #leftPanels .jstree-anchor,
+html.bx-apple #leftPanels .xtree a {
   color: #1d1d1f !important;
   text-decoration: none;
-  text-shadow: none !important;
 }
 
-html.bx-apple .navbar-nav > li > a {
-  border-radius: 8px;
-}
-
-html.bx-apple .navbar-nav > li > a:hover,
-html.bx-apple .navbar-nav > li > a:focus,
-html.bx-apple .navbar-inverse .navbar-nav > li > a:hover {
+html.bx-apple #leftPanels a:hover,
+html.bx-apple #leftPanels .jstree-hovered,
+html.bx-apple #leftPanels .jstree-wholerow-hovered {
   background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 8px;
+  box-shadow: none !important;
   color: #1d1d1f !important;
 }
 
-html.bx-apple #xwikimaincontainer,
-html.bx-apple #mainContentArea,
-html.bx-apple #contentcontainer {
-  background: transparent;
+html.bx-apple #leftPanels .jstree-clicked,
+html.bx-apple #leftPanels .jstree-wholerow-clicked,
+html.bx-apple #leftPanels .current,
+html.bx-apple #leftPanels .current > a {
+  background: #e4e4e9 !important;
+  border-radius: 8px;
+  box-shadow: none !important;
+  color: #1d1d1f !important;
+}
+
+html.bx-apple #contentcolumn {
+  background: #fff;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  min-height: calc(100vh - 52px);
 }
 
 html.bx-apple #mainContentArea,
 html.bx-apple #xwikicontent {
-  background: #fff;
+  background: transparent;
 }
 
-html.bx-apple #mainContentArea,
-html.bx-apple body:not(:has(#mainContentArea)) #xwikicontent {
-  margin-top: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  border-radius: 18px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.04);
-  padding: 28px 36px 40px;
+html.bx-apple #hierarchy.breadcrumb,
+html.bx-apple #hierarchy_breadcrumb .breadcrumb {
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 13px;
+  color: #6e6e73;
 }
 
-html.bx-apple #document-title h1,
-html.bx-apple .document-header h1,
-html.bx-apple #xwikicontent > h1:first-child {
+html.bx-apple #hierarchy.breadcrumb > li,
+html.bx-apple #hierarchy.breadcrumb > li > a,
+html.bx-apple #hierarchy.breadcrumb > li + li::before {
+  color: #6e6e73 !important;
+  text-shadow: none !important;
+}
+
+html.bx-apple #hierarchy.breadcrumb > li > a:hover {
+  color: #1d1d1f !important;
+}
+
+html.bx-apple #document-title h1 {
+  color: #1d1d1f !important;
   font-weight: 650;
-  letter-spacing: -0.022em;
-  color: #1d1d1f;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+html.bx-apple .xdocLastModification,
+html.bx-apple #document-info,
+html.bx-apple .xdoc-modified {
+  color: #6e6e73;
+  font-size: 13px;
 }
 
 html.bx-apple #xwikicontent {
@@ -299,68 +405,62 @@ html.bx-apple #xwikicontent h1,
 html.bx-apple #xwikicontent h2,
 html.bx-apple #xwikicontent h3,
 html.bx-apple #xwikicontent h4 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.022em;
   font-weight: 650;
   color: #1d1d1f;
 }
 
-html.bx-apple #xwikicontent a {
+html.bx-apple #xwikicontent a,
+html.bx-apple #xwikicontent a:visited {
   color: #0066cc;
 }
 
-html.bx-apple #hierarchy,
-html.bx-apple .breadcrumb {
-  background: transparent !important;
-  border-radius: 0;
-  color: #6e6e73;
-  font-size: 13px;
-  box-shadow: none !important;
-}
-
-html.bx-apple .btn {
-  border-radius: 980px !important;
-  border: 0 !important;
-  box-shadow: none !important;
+html.bx-apple #contentmenu .btn,
+html.bx-apple #contentmenu a.btn,
+html.bx-apple .bottombuttons .btn-default,
+html.bx-apple .bottombuttons .btn-link,
+html.bx-apple #editButtons .btn-default {
+  background: rgba(0, 0, 0, 0.05) !important;
   background-image: none !important;
+  color: #1d1d1f !important;
+  border: 0 !important;
+  border-radius: 980px !important;
+  box-shadow: none !important;
   text-shadow: none !important;
   font-family: inherit;
   font-weight: 560;
 }
 
-html.bx-apple .btn-primary,
-html.bx-apple .btn-success {
-  background: #0071e3 !important;
-  color: #fff !important;
+html.bx-apple #contentmenu .btn:hover,
+html.bx-apple .bottombuttons .btn-default:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: #1d1d1f !important;
 }
 
-html.bx-apple .btn-default,
-html.bx-apple .btn-secondary,
-html.bx-apple .btn-link {
-  background: rgba(0, 0, 0, 0.05) !important;
-  color: #1d1d1f !important;
+html.bx-apple .btn-primary,
+html.bx-apple .btn-success,
+html.bx-apple .bottombuttons .btn-primary {
+  background: #0071e3 !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 980px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
 html.bx-apple .btn-primary:hover,
 html.bx-apple .btn-success:hover {
   background: #0077ed !important;
+  color: #fff !important;
 }
 
-html.bx-apple .btn-default:hover,
-html.bx-apple .btn-secondary:hover {
-  background: rgba(0, 0, 0, 0.08) !important;
-}
-
-html.bx-apple .btn-group > .btn,
-html.bx-apple .btn-group-vertical > .btn {
-  border-radius: 8px !important;
-}
-
-html.bx-apple .form-control,
-html.bx-apple input[type="text"],
-html.bx-apple input[type="search"],
-html.bx-apple input[type="password"],
-html.bx-apple select,
-html.bx-apple textarea {
+html.bx-apple #mainContentArea .form-control,
+html.bx-apple #mainContentArea input[type="text"],
+html.bx-apple #mainContentArea input[type="search"],
+html.bx-apple #mainContentArea select,
+html.bx-apple #mainContentArea textarea,
+html.bx-apple .bottombuttons input[type="text"] {
   border-radius: 10px !important;
   border: 1px solid #d2d2d7 !important;
   box-shadow: none !important;
@@ -368,10 +468,10 @@ html.bx-apple textarea {
   color: #1d1d1f;
 }
 
-html.bx-apple .form-control:focus,
-html.bx-apple input:focus,
-html.bx-apple select:focus,
-html.bx-apple textarea:focus {
+html.bx-apple #mainContentArea .form-control:focus,
+html.bx-apple #mainContentArea input:focus,
+html.bx-apple #mainContentArea select:focus,
+html.bx-apple #mainContentArea textarea:focus {
   border-color: #0071e3 !important;
   box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.16) !important;
   outline: none;
@@ -379,12 +479,14 @@ html.bx-apple textarea:focus {
 
 html.bx-apple #xwikicontent table {
   border: 0 !important;
-  background: transparent;
+  background: transparent !important;
+  border-collapse: collapse;
 }
 
 html.bx-apple #xwikicontent td,
 html.bx-apple #xwikicontent th {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   padding: 10px 12px;
 }
 
@@ -392,36 +494,21 @@ html.bx-apple #xwikicontent th {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #6e6e73;
-}
-
-html.bx-apple .panel,
-html.bx-apple #leftPanels .panel,
-html.bx-apple #rightPanels .panel {
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  border-radius: 14px !important;
-  box-shadow: none !important;
-  background: rgba(255, 255, 255, 0.9);
-  overflow: hidden;
-}
-
-html.bx-apple .panel-heading,
-html.bx-apple .panel-default > .panel-heading {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-  color: #1d1d1f;
+  color: #6e6e73 !important;
+  background: transparent;
 }
 
 html.bx-apple .dropdown-menu {
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16) !important;
   padding: 6px;
+  background: #fff !important;
 }
 
 html.bx-apple .dropdown-menu > li > a {
   border-radius: 8px;
-  color: #1d1d1f;
+  color: #1d1d1f !important;
 }
 
 html.bx-apple .dropdown-menu > li > a:hover,
@@ -430,10 +517,63 @@ html.bx-apple .dropdown-menu > li > a:focus {
   color: #1d1d1f !important;
 }
 
+html.bx-apple #tmNotifications .dropdown-menu,
+html.bx-apple #tmNotifications .notification-container {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+html.bx-apple #tmDrawer,
+html.bx-apple dialog.drawer-nav {
+  background: #fff !important;
+  color: #1d1d1f !important;
+  border: 0 !important;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.18);
+}
+
+html.bx-apple #tmDrawer .drawer-header,
+html.bx-apple #tmDrawer header,
+html.bx-apple #tmDrawer a,
+html.bx-apple #tmDrawer .drawer-menu-item {
+  color: #1d1d1f !important;
+  background-image: none !important;
+}
+
+html.bx-apple #tmDrawer .drawer-menu-item:hover,
+html.bx-apple #tmDrawer a.drawer-menu-item:hover {
+  background: #f5f5f7 !important;
+  border-radius: 10px;
+}
+
+html.bx-apple #tmDrawer h2,
+html.bx-apple #tmDrawer h3,
+html.bx-apple #tmDrawer .drawer-menu-group-title {
+  color: #6e6e73 !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 html.bx-apple .modal-content {
   border: 0 !important;
   border-radius: 16px !important;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18) !important;
+}
+
+html.bx-apple .pagination > li > a,
+html.bx-apple .pagination > li > span {
+  border: 0 !important;
+  border-radius: 8px !important;
+  color: #1d1d1f !important;
+  background: transparent !important;
+  margin: 0 2px;
+}
+
+html.bx-apple .pagination > .active > a,
+html.bx-apple .pagination > .active > span {
+  background: #1d1d1f !important;
+  color: #fff !important;
 }
 
 html.bx-apple #xwikicontent .box {
@@ -476,10 +616,10 @@ html.bx-apple #betterxwiki-find,
 html.bx-apple #betterxwiki-outline,
 html.bx-apple #betterxwiki-copy,
 html.bx-apple #betterxwiki-search {
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.92);
   border-color: rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
   backdrop-filter: saturate(180%) blur(16px);
   color: #1d1d1f;
 }

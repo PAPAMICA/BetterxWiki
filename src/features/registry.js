@@ -12,7 +12,7 @@ export const FEATURES = [
     id: "appleTheme",
     group: "look",
     label: "Thème épuré",
-    description: "Allège l’interface : fond clair, typographie système, boutons et panneaux plus calmes.",
+    description: "Barre sombre, fond gris clair, navigation plus calme, boutons et tableaux allégés.",
     default: true,
   },
   {

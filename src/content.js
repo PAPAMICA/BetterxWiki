@@ -877,8 +877,11 @@ const EDITOR_THEME_CSS = `
     color: #1d1d1f;
   }
   a { color: #0066cc; }
-  table { border-collapse: separate; }
-  td, th { border-color: rgba(0, 0, 0, 0.08); }
+  table { border-collapse: collapse; border: 0; }
+  td, th {
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
 `;
 
 function syncStickyOffset() {
