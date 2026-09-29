@@ -578,8 +578,12 @@ function updateEditorChrome() {
 }
 
 function mountEditorTools(editor) {
-  if (editor.container?.$.classList.contains("cke_balloon")) return false;
-  const toolbox = editor.container?.$.querySelector(".cke_toolbox");
+  const chrome = editor.container?.$;
+  if (!chrome?.classList.contains("cke_float")) {
+    if (editorBar.parentElement && editorBar.parentElement !== document.body) document.body.append(editorBar);
+    return false;
+  }
+  const toolbox = chrome.querySelector(".cke_toolbox");
   if (!toolbox) return false;
   let host = toolbox.querySelector(".bx-cke-tools");
   if (!host) {
