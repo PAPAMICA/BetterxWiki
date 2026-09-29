@@ -248,10 +248,23 @@ html.bx-apple body.skin-flamingo header.navbar.navbar-default .container-fluid {
   color: #1d1d1f !important;
 }
 
-html.bx-apple #companylogo img,
-html.bx-apple #menuview header img {
-  filter: brightness(0);
-  max-height: 28px;
+html.bx-apple #companylogo img {
+  filter: none !important;
+  background: #1d1d1f;
+  border-radius: 8px;
+  padding: 5px 8px;
+  max-height: 36px;
+  width: auto;
+  box-sizing: border-box;
+}
+
+html.bx-apple #menuview .avatar {
+  filter: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  max-height: 28px !important;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 html.bx-apple #menuview .navbar-nav > li > a,
@@ -281,48 +294,64 @@ html.bx-apple #menuview .btn-link:hover {
   border-radius: 6px;
 }
 
+html.bx-apple #menuview .navbar-right > li > button,
+html.bx-apple #tmNotifications > button,
+html.bx-apple #globalsearch > button,
+html.bx-apple #tmDrawerActivator {
+  background: transparent !important;
+  background-image: none !important;
+  color: #1d1d1f !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  padding: 0 !important;
+}
+
 html.bx-apple #tmNotifications .badge,
 html.bx-apple #menuview .badge {
   background: #ff3b30 !important;
   color: #fff !important;
   filter: none;
+  width: auto !important;
+  height: 16px !important;
+  min-width: 16px;
+  padding: 0 4px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  line-height: 16px !important;
 }
 
-html.bx-apple #globalsearch .input-group,
-html.bx-apple #leftPanels .input-group,
-html.bx-apple #leftPanels form {
+html.bx-apple #leftPanels .globalsearch.input-group {
   display: flex !important;
   align-items: center;
-  background: rgba(118, 118, 128, 0.12) !important;
+  background: rgba(0, 0, 0, 0.06) !important;
   border: 0 !important;
   border-radius: 8px !important;
   box-shadow: none !important;
   overflow: hidden;
+  margin: 8px 10px;
 }
 
-html.bx-apple #globalsearch .form-control,
-html.bx-apple #headerglobalsearchinput,
-html.bx-apple #leftPanels input[type="text"],
-html.bx-apple #leftPanels input[type="search"],
-html.bx-apple #globalsearch .btn,
-html.bx-apple #leftPanels .btn,
-html.bx-apple #leftPanels .btn-primary,
-html.bx-apple #menuview #globalsearch .btn-primary {
+html.bx-apple #leftPanels #globalsearchinput {
+  flex: 1;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  height: 28px !important;
+  font-size: 13px;
+  color: #1d1d1f !important;
+}
+
+html.bx-apple #leftPanels .globalsearch .btn {
   background: transparent !important;
   background-image: none !important;
-  color: #1d1d1f !important;
+  color: #8e8e93 !important;
   border: 0 !important;
-  border-radius: 8px !important;
   box-shadow: none !important;
-  height: 28px;
-  font-size: 13px;
-}
-
-html.bx-apple #globalsearch .btn,
-html.bx-apple #leftPanels form .btn,
-html.bx-apple #leftPanels .input-group .btn {
-  color: #636366 !important;
-  width: 32px;
+  width: 32px !important;
+  height: 28px !important;
   padding: 0 !important;
 }
 
@@ -344,17 +373,19 @@ html.bx-apple #rightPanels .panel {
   margin-bottom: 4px;
 }
 
+html.bx-apple #leftPanels h2.xwikipaneltitle,
+html.bx-apple #rightPanels h2.xwikipaneltitle,
 html.bx-apple #leftPanels .panel-heading,
-html.bx-apple #rightPanels .panel-heading,
-html.bx-apple #leftPanels .panel-title,
-html.bx-apple #rightPanels .panel-title {
+html.bx-apple #rightPanels .panel-heading {
   background: transparent !important;
   border: 0 !important;
   color: #8e8e93 !important;
   font-size: 11px !important;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  margin: 16px 14px 4px !important;
+  padding: 0 !important;
 }
 
 html.bx-apple #leftPanels ul,
@@ -362,18 +393,18 @@ html.bx-apple #rightPanels ul {
   list-style: none !important;
 }
 
-html.bx-apple #leftPanels a,
-html.bx-apple #rightPanels a,
+html.bx-apple #leftPanels .jstree-themeicon {
+  display: none !important;
+}
+
 html.bx-apple #leftPanels .jstree-anchor,
-html.bx-apple #leftPanels .xtree a {
-  display: block;
-  box-sizing: border-box;
-  margin: 1px 8px;
-  padding: 4px 8px;
+html.bx-apple #rightPanels .jstree-anchor {
   color: #1d1d1f !important;
   text-decoration: none !important;
-  font-size: 13px;
-  border-radius: 6px;
+  font-size: 13px !important;
+  border-radius: 6px !important;
+  height: 24px !important;
+  line-height: 24px !important;
 }
 
 html.bx-apple #leftPanels a:hover,
@@ -385,12 +416,10 @@ html.bx-apple #leftPanels .jstree-wholerow-hovered {
   color: #1d1d1f !important;
 }
 
-html.bx-apple #leftPanels .jstree-clicked,
-html.bx-apple #leftPanels .jstree-wholerow-clicked,
-html.bx-apple #leftPanels .current > a,
-html.bx-apple #leftPanels li.active > a {
+html.bx-apple #leftPanels .jstree-anchor.jstree-clicked,
+html.bx-apple #leftPanels .jstree-wholerow-clicked {
   background: #007aff !important;
-  border-radius: 6px;
+  border-radius: 6px !important;
   box-shadow: none !important;
   color: #fff !important;
 }
@@ -532,25 +561,36 @@ html.bx-apple #mainContentArea textarea:focus {
   outline: none;
 }
 
-html.bx-apple #xwikicontent table {
+html.bx-apple body #xwikicontent table {
   border: 0 !important;
   background: transparent !important;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
+  width: 100%;
 }
 
-html.bx-apple #xwikicontent td,
-html.bx-apple #xwikicontent th {
+html.bx-apple body #xwikicontent table td,
+html.bx-apple body #xwikicontent table th {
   border: 0 !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  padding: 10px 12px;
+  padding: 7px 10px !important;
+  background-image: none !important;
+  vertical-align: middle;
 }
 
-html.bx-apple #xwikicontent th {
-  font-size: 12px;
-  font-weight: 600;
+html.bx-apple body #xwikicontent table th {
+  font-size: 11px !important;
+  font-weight: 600 !important;
   letter-spacing: 0.02em;
-  color: #6e6e73 !important;
-  background: transparent;
+  color: #8e8e93 !important;
+  background: transparent !important;
+}
+
+html.bx-apple body #xwikicontent table tr:hover td {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+html.bx-apple body #xwikicontent table td a {
+  overflow-wrap: anywhere;
 }
 
 html.bx-apple .dropdown-menu {
