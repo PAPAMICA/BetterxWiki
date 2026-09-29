@@ -657,11 +657,18 @@ html.bx-themed #leftPanels .application-label {
 }
 
 html.bx-themed #leftPanelsToggle {
-  background: var(--card-bg) !important;
+  background: var(--body-bg) !important;
   color: var(--text-muted) !important;
-  border: 1px solid var(--xwiki-border-color) !important;
-  border-radius: 8px !important;
+  border: 0 !important;
+  border-radius: 0 10px 10px 0 !important;
   box-shadow: none !important;
+  width: 16px !important;
+  padding: 10px 0 !important;
+}
+
+html.bx-themed #leftPanels .globalsearch .input-group-btn {
+  width: auto;
+  float: none;
 }
 
 html.bx-themed #contentcolumn .main {
@@ -1220,18 +1227,72 @@ html.bx-themed #xwikidatacontents {
   border-color: transparent !important;
 }
 
-html.bx-themed .xwikitabbar > li > a {
+html.bx-themed ul.xwikitabbar,
+html.bx-themed .nav-tabs {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .xwikitabbar > li > a,
+html.bx-themed .nav-tabs > li > a {
   background: transparent !important;
   color: var(--text-muted) !important;
-  border-color: transparent !important;
+  border: 0 !important;
   border-radius: 8px !important;
+  box-shadow: none !important;
 }
 
 html.bx-themed .xwikitabbar > li.active > a,
-html.bx-themed .xwikitabbar > li.active > a:focus {
+html.bx-themed .xwikitabbar > li.active > a:focus,
+html.bx-themed .nav-tabs > li.active > a,
+html.bx-themed .nav-tabs > li.active > a:focus {
   background: var(--component-active-bg) !important;
   color: var(--component-active-color) !important;
-  border-color: transparent !important;
+  border: 0 !important;
+}
+
+html.bx-themed #xwikidata table,
+html.bx-themed #historycontent table {
+  width: 100%;
+  margin: 12px 0;
+  background: var(--table-bg) !important;
+  border: 1px solid var(--table-border-color) !important;
+  border-radius: 14px !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden;
+}
+
+html.bx-themed #xwikidata .table > thead > tr > th,
+html.bx-themed #xwikidata .table > tbody > tr > td,
+html.bx-themed #xwikidata .table-striped > tbody > tr:nth-of-type(odd),
+html.bx-themed #xwikidata .table-striped > tbody > tr:nth-of-type(even),
+html.bx-themed #xwikidata .table-striped > tbody > tr:nth-of-type(odd) > td,
+html.bx-themed #xwikidata .table-striped > tbody > tr:nth-of-type(even) > td {
+  background: var(--table-bg) !important;
+  background-image: none !important;
+  color: var(--text-color) !important;
+  border-color: var(--table-border-color) !important;
+}
+
+html.bx-themed #xwikidata .table > thead > tr > th {
+  background: var(--table-head-bg) !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--table-border-color) !important;
+}
+
+html.bx-themed #xwikidata .table-hover > tbody > tr:hover,
+html.bx-themed #xwikidata .table-hover > tbody > tr:hover > td {
+  background: var(--table-bg-hover) !important;
+}
+
+html.bx-themed #xwikidata a,
+html.bx-themed #xdocFooter a {
+  color: var(--link-color) !important;
 }
 
 html.bx-themed #footerglobal,
