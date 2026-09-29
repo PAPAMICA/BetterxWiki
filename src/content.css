@@ -1254,7 +1254,7 @@ html.bx-themed .cke_balloon .cke_combo_text {
 
 html.bx-themed:has(#xwikicontent.cke_editable) #mainContentArea,
 html.bx-themed:has(#xwikicontent.cke_editable) #contentcolumn .main > #hierarchy_breadcrumb {
-  margin-right: 156px !important;
+  margin-right: 82px !important;
 }
 
 html.bx-themed .cke_float {
@@ -1263,7 +1263,7 @@ html.bx-themed .cke_float {
   right: 12px !important;
   left: auto !important;
   bottom: auto !important;
-  width: 132px !important;
+  width: 58px !important;
   max-height: calc(100vh - 88px) !important;
   height: auto !important;
   margin: 0 !important;
@@ -1301,9 +1301,8 @@ html.bx-themed .cke_float .cke_top {
 
 html.bx-themed .cke_float .cke_toolbox {
   display: flex !important;
-  flex-flow: row wrap;
+  flex-direction: column;
   align-items: stretch;
-  align-content: flex-start;
   gap: 6px;
   width: auto !important;
 }
@@ -1314,10 +1313,6 @@ html.bx-themed .cke_float .bx-cke-tools {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
-}
-
-html.bx-themed .cke_float .cke_toolbar:has(.cke_toolgroup > a.cke_button:only-child) {
-  width: calc(50% - 3px) !important;
 }
 
 html.bx-themed .cke_float .cke_toolbar_start,
@@ -1331,7 +1326,7 @@ html.bx-themed .cke_float .cke_toolgroup,
 html.bx-themed .cke_float .bx-group {
   float: none !important;
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2px;
   width: auto !important;
   margin: 0 !important;
@@ -1341,10 +1336,6 @@ html.bx-themed .cke_float .bx-group {
   background: var(--search-fill) !important;
   background-image: none !important;
   box-shadow: none !important;
-}
-
-html.bx-themed .cke_float .cke_toolbar:has(.cke_toolgroup > a.cke_button:only-child) .cke_toolgroup {
-  grid-template-columns: 1fr;
 }
 
 html.bx-themed .cke_float a.cke_button,
@@ -1424,12 +1415,12 @@ html.bx-themed .cke_float .cke_combo {
 html.bx-themed .cke_float .cke_combo_button {
   display: flex !important;
   align-items: center;
-  justify-content: space-between;
-  gap: 6px;
+  justify-content: center;
+  gap: 2px;
   width: 100% !important;
   height: 34px !important;
   margin: 0 !important;
-  padding: 0 10px !important;
+  padding: 0 !important;
   border: 0 !important;
   border-radius: 12px !important;
   background: var(--search-fill) !important;
@@ -1440,19 +1431,38 @@ html.bx-themed .cke_float .cke_combo_button {
 html.bx-themed .cke_float .cke_combo_text {
   display: block !important;
   float: none !important;
-  flex: 1 1 auto;
+  flex: none;
   width: auto !important;
   max-width: none;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   padding: 0 !important;
   color: var(--text-color) !important;
-  font-size: 12px !important;
-  font-weight: 650;
+  font-size: 13px !important;
+  font-weight: 700;
   line-height: 34px !important;
-  text-align: left;
+  text-align: center;
   text-shadow: none !important;
+}
+
+html.bx-themed .cke_float .cke_combo__format .cke_combo_text,
+html.bx-themed .cke_float .cke_combo__styles .cke_combo_text {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+html.bx-themed .cke_float .cke_combo__format .cke_combo_text::before,
+html.bx-themed .cke_float .cke_combo__styles .cke_combo_text::before {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+html.bx-themed .cke_float .cke_combo__format .cke_combo_text::before {
+  content: "F";
+}
+
+html.bx-themed .cke_float .cke_combo__styles .cke_combo_text::before {
+  content: "S";
 }
 
 html.bx-themed .cke_float .cke_combo_open {
@@ -1496,6 +1506,12 @@ html.bx-themed .cke_panel {
   background: var(--card-bg) !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28) !important;
   overflow: hidden;
+}
+
+html.bx-themed .cke_panel.bx-float-panel {
+  z-index: 100010 !important;
+  max-height: calc(100vh - 24px) !important;
+  overflow: auto !important;
 }
 
 html.bx-apple { color-scheme: light; }

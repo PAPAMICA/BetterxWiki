@@ -137,6 +137,9 @@ function mount() {
   document.addEventListener(SETTINGS_EVENT, applyPublishedSettings);
   document.addEventListener("mouseover", showCopyButton);
   document.addEventListener("mouseout", hideCopyButtonOnLeave);
+  document.addEventListener("click", (event) => {
+    if (event.target.closest?.(".cke_float")) scheduleFloatPanels();
+  }, true);
   document.addEventListener("scroll", () => {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(rememberScroll, 200);
@@ -905,8 +908,58 @@ function editorThemeCss() {
 }
 
 function watchEditorPanels() {
-  const observer = new MutationObserver(paintEditorPanels);
+  const observer = new MutationObserver((records) => {
+    paintEditorPanels();
+    for (const record of records) {
+      for (const node of record.addedNodes) {
+        if (node.nodeType === 1 && (node.classList?.contains("cke_panel") || node.querySelector?.(".cke_panel"))) scheduleFloatPanels();
+      }
+    }
+  });
   observer.observe(document.documentElement, { childList: true, subtree: true });
+}
+
+function scheduleFloatPanels() {
+  requestAnimationFrame(placeFloatPanels);
+  setTimeout(placeFloatPanels, 40);
+  setTimeout(placeFloatPanels, 140);
+}
+
+function placeFloatPanels() {
+  const rail = document.querySelector(".cke_float");
+  if (!rail) return;
+  const railStyle = getComputedStyle(rail);
+  if (railStyle.display === "none" || railStyle.visibility === "hidden") return;
+  const railRect = rail.getBoundingClientRect();
+  if (railRect.width < 8) return;
+  const maxHeight = Math.max(160, window.innerHeight - 24);
+  for (const panel of document.querySelectorAll(".cke_panel")) {
+    const style = getComputedStyle(panel);
+    if (style.display === "none" || style.visibility === "hidden") continue;
+    const frame = panel.querySelector("iframe");
+    let inner = 240;
+    try {
+      const doc = frame?.contentDocument;
+      inner = Math.max(doc?.body?.scrollHeight || 0, doc?.documentElement?.scrollHeight || 0, panel.scrollHeight || 0, 120);
+    } catch {
+      inner = Math.max(panel.scrollHeight || 0, 160);
+    }
+    const height = Math.min(inner, maxHeight);
+    const width = Math.max(panel.offsetWidth || 0, frame?.offsetWidth || 0, 180);
+    const currentTop = panel.getBoundingClientRect().top;
+    const top = Math.min(Math.max(12, Number.isFinite(currentTop) ? currentTop : 12), Math.max(12, window.innerHeight - height - 12));
+    const left = Math.max(8, railRect.left - width - 8);
+    panel.classList.add("bx-float-panel");
+    panel.style.setProperty("position", "fixed", "important");
+    panel.style.setProperty("top", `${top}px`, "important");
+    panel.style.setProperty("left", `${left}px`, "important");
+    panel.style.setProperty("right", "auto", "important");
+    panel.style.setProperty("height", `${height}px`, "important");
+    panel.style.setProperty("max-height", `${maxHeight}px`, "important");
+    panel.style.setProperty("overflow", "auto", "important");
+    panel.style.setProperty("z-index", "100010", "important");
+    if (frame) frame.style.setProperty("height", `${inner}px`, "important");
+  }
 }
 
 function paintEditorPanels() {
