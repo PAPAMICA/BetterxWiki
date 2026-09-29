@@ -216,63 +216,63 @@ html.bx-sticky #xwikicontent table > tbody > tr:first-child > th {
 }
 
 html.bx-apple {
-  --text-color: #1d1d1f;
-  --body-bg: #e7e7ec;
+  --text-color: #282a36;
+  --body-bg: #e6e7ee;
   --card-bg: #ffffff;
   --xwiki-page-content-bg: #ffffff;
-  --xwiki-border-color: rgba(0, 0, 0, 0.08);
+  --xwiki-border-color: rgba(98, 114, 164, 0.35);
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   --font-family-base: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  --link-color: #007aff;
-  --brand-primary: #007aff;
-  --brand-success: #34c759;
-  --brand-info: #007aff;
-  --brand-warning: #ff9f0a;
-  --brand-danger: #ff3b30;
-  --headings-color: #1d1d1f;
+  --link-color: #007a94;
+  --brand-primary: #6d4cc4;
+  --brand-success: #1c8f4e;
+  --brand-info: #007a94;
+  --brand-warning: #b86a00;
+  --brand-danger: #e23b4a;
+  --headings-color: #282a36;
   --headings-font-weight: 650;
-  --text-muted: #8e8e93;
-  --component-active-bg: #007aff;
-  --component-active-color: #ffffff;
-  --btn-default-color: #1d1d1f;
-  --btn-default-bg: rgba(0, 0, 0, 0.05);
+  --text-muted: #5c6288;
+  --component-active-bg: #bd93f9;
+  --component-active-color: #282a36;
+  --btn-default-color: #282a36;
+  --btn-default-bg: #e6e7ee;
   --btn-default-border: transparent;
-  --btn-primary-color: #ffffff;
-  --btn-primary-bg: #007aff;
-  --btn-success-color: #ffffff;
-  --btn-success-bg: #34c759;
-  --navbar-default-bg: #1c1c1e;
-  --navbar-default-color: #f5f5f7;
-  --navbar-default-link-color: #f5f5f7;
-  --navbar-default-link-hover-color: #ffffff;
-  --navbar-default-link-hover-bg: rgba(255, 255, 255, 0.12);
-  --navbar-default-link-active-color: #ffffff;
-  --navbar-default-link-active-bg: rgba(255, 255, 255, 0.12);
+  --btn-primary-color: #282a36;
+  --btn-primary-bg: #bd93f9;
+  --btn-success-color: #282a36;
+  --btn-success-bg: #50fa7b;
+  --navbar-default-bg: #21222c;
+  --navbar-default-color: #f8f8f2;
+  --navbar-default-link-color: #f8f8f2;
+  --navbar-default-link-hover-color: #f8f8f2;
+  --navbar-default-link-hover-bg: #44475a;
+  --navbar-default-link-active-color: #f8f8f2;
+  --navbar-default-link-active-bg: #44475a;
   --navbar-height: 52px;
   --dropdown-bg: #ffffff;
-  --dropdown-border: rgba(0, 0, 0, 0.1);
-  --dropdown-link-color: #1d1d1f;
-  --dropdown-link-hover-color: #1d1d1f;
-  --dropdown-link-hover-bg: #f2f2f7;
-  --dropdown-divider-bg: rgba(0, 0, 0, 0.08);
-  --input-bg: #ffffff;
-  --input-border: #d2d2d7;
-  --input-color: #1d1d1f;
-  --input-border-focus: #007aff;
-  --input-color-placeholder: #8e8e93;
+  --dropdown-border: rgba(98, 114, 164, 0.35);
+  --dropdown-link-color: #282a36;
+  --dropdown-link-hover-color: #282a36;
+  --dropdown-link-hover-bg: #e6e7ee;
+  --dropdown-divider-bg: rgba(98, 114, 164, 0.28);
+  --input-bg: #e6e7ee;
+  --input-border: rgba(98, 114, 164, 0.4);
+  --input-color: #282a36;
+  --input-border-focus: #bd93f9;
+  --input-color-placeholder: #7a80a0;
   --panel-bg: #ffffff;
-  --panel-default-text: #1d1d1f;
-  --panel-header-text: #8e8e93;
+  --panel-default-text: #282a36;
+  --panel-header-text: #5c6288;
   --breadcrumb-bg: transparent;
-  --breadcrumb-color: #8e8e93;
-  --breadcrumb-link-color: #8e8e93;
-  --table-bg: #ffffff;
-  --table-head-bg: #f5f5f7;
-  --table-bg-hover: rgba(0, 0, 0, 0.03);
-  --table-border-color: rgba(0, 0, 0, 0.08);
+  --breadcrumb-color: #3d425c;
+  --breadcrumb-link-color: #007a94;
+  --table-bg: #e6e7ee;
+  --table-head-bg: #d8dae4;
+  --table-bg-hover: #ffffff;
+  --table-border-color: rgba(98, 114, 164, 0.4);
   --border-radius-base: 10px;
-  --search-fill: rgba(0, 0, 0, 0.06);
-  --sidebar-hover: rgba(0, 0, 0, 0.06);
+  --search-fill: #e6e7ee;
+  --sidebar-hover: #dcdff0;
 }
 
 html.bx-dracula {
@@ -291,7 +291,7 @@ html.bx-dracula {
   --brand-danger: #ff5555;
   --headings-color: #f8f8f2;
   --headings-font-weight: 650;
-  --text-muted: #6272a4;
+  --text-muted: #d4d7ee;
   --component-active-bg: #bd93f9;
   --component-active-color: #282a36;
   --btn-default-color: #f8f8f2;
@@ -319,12 +319,12 @@ html.bx-dracula {
   --input-border: #6272a4;
   --input-color: #f8f8f2;
   --input-border-focus: #bd93f9;
-  --input-color-placeholder: #6272a4;
+  --input-color-placeholder: #b4b8d6;
   --panel-bg: #44475a;
   --panel-default-text: #f8f8f2;
-  --panel-header-text: #6272a4;
+  --panel-header-text: #d4d7ee;
   --breadcrumb-bg: transparent;
-  --breadcrumb-color: #6272a4;
+  --breadcrumb-color: #e6e8f5;
   --breadcrumb-link-color: #8be9fd;
   --table-bg: #282a36;
   --table-head-bg: #21222c;
@@ -443,8 +443,40 @@ html.bx-themed #rightPanels .panel {
   color: var(--panel-default-text);
 }
 
-html.bx-themed body#body.panel-left-width-Medium {
+html.bx-themed body#body.panel-left-width-Medium:not(.hideleft):not(.hidelefthideright):not(:has(#leftPanelsToggle[aria-expanded="false"])) {
   --panel-column-left-width: clamp(300px, 24vw, 400px);
+}
+
+html.bx-themed body#body.hideleft,
+html.bx-themed body#body.hidelefthideright,
+html.bx-themed body#body:has(#leftPanelsToggle[aria-expanded="false"]) {
+  --panel-column-left-width: 0px !important;
+}
+
+html.bx-themed body#body.hideleft #leftPanels,
+html.bx-themed body#body.hidelefthideright #leftPanels,
+html.bx-themed body#body:has(#leftPanelsToggle[aria-expanded="false"]) #leftPanels {
+  display: none !important;
+  width: 0 !important;
+}
+
+html.bx-themed body#body.hideleft #contentcolumn,
+html.bx-themed body#body.hidelefthideright #contentcolumn,
+html.bx-themed body#body:has(#leftPanelsToggle[aria-expanded="false"]) #contentcolumn {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 1 auto !important;
+}
+
+html.bx-themed .text-muted,
+html.bx-themed .xdocLastModification,
+html.bx-themed .xdocCreation,
+html.bx-themed .noitems,
+html.bx-themed .xHint,
+html.bx-themed small,
+html.bx-themed .text-smaller,
+html.bx-themed .resultsNo {
+  color: var(--text-muted) !important;
 }
 
 html.bx-themed #leftPanels h1.xwikipaneltitle,
@@ -695,12 +727,15 @@ html.bx-themed #contentcolumn .main > #hierarchy_breadcrumb + #mainContentArea {
 
 html.bx-themed #hierarchy.breadcrumb,
 html.bx-themed #hierarchy.breadcrumb > li,
-html.bx-themed #hierarchy.breadcrumb > li > a,
 html.bx-themed #hierarchy.breadcrumb > li + li::before {
   background: transparent !important;
   color: var(--breadcrumb-color) !important;
   box-shadow: none !important;
   text-shadow: none !important;
+}
+
+html.bx-themed #hierarchy.breadcrumb > li > a {
+  color: var(--breadcrumb-link-color) !important;
 }
 
 html.bx-themed #hierarchy .dropdown-toggle {

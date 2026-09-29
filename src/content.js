@@ -879,21 +879,17 @@ function editorThemeCss() {
 const APPLE_EDITOR_CSS = `
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-    color: #1d1d1f;
+    background: #ffffff;
+    color: #282a36;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
-    letter-spacing: -0.022em;
-    font-weight: 650;
-    color: #1d1d1f;
-  }
-  a { color: #007aff; text-decoration: none; }
-  table { border-collapse: collapse; border: 0; }
-  td, th {
-    border: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  }
+  h1, h2, h3, h4 { color: #282a36; font-weight: 650; }
+  a { color: #007a94; text-decoration: none; }
+  table { border-collapse: separate; border: 1px solid rgba(98, 114, 164, 0.4); border-radius: 12px; }
+  th { color: #5c6288; background: #d8dae4; }
+  td { background: #e6e7ee; }
+  td, th { border: 0; border-bottom: 1px solid rgba(98, 114, 164, 0.28); }
 `;
 
 const DRACULA_EDITOR_CSS = `
