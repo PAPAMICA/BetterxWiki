@@ -217,7 +217,7 @@ html.bx-sticky #xwikicontent table > tbody > tr:first-child > th {
 
 html.bx-apple,
 html.bx-apple body.skin-flamingo {
-  background: #f5f5f7 !important;
+  background: #ececee !important;
   color: #1d1d1f;
 }
 
@@ -240,22 +240,34 @@ html.bx-apple #menuview header.navbar,
 html.bx-apple body.skin-flamingo header.navbar.navbar-default,
 html.bx-apple body.skin-flamingo header.navbar.navbar-default .container,
 html.bx-apple body.skin-flamingo header.navbar.navbar-default .container-fluid {
-  background: #1d1d1f !important;
+  background: #ececee !important;
   background-image: none !important;
   border: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   box-shadow: none !important;
+  color: #1d1d1f !important;
+}
+
+html.bx-apple #companylogo img,
+html.bx-apple #menuview header img {
+  filter: brightness(0);
+  max-height: 28px;
 }
 
 html.bx-apple #menuview .navbar-nav > li > a,
 html.bx-apple #menuview .navbar-brand,
 html.bx-apple #menuview .icon-navbar,
 html.bx-apple #menuview #tmDrawerActivator,
+html.bx-apple #menuview .btn,
 html.bx-apple #menuview .btn-link,
+html.bx-apple #menuview .glyphicon,
+html.bx-apple #menuview .fa,
 html.bx-apple #companylogo a {
-  color: #fff !important;
+  color: #1d1d1f !important;
   background: transparent !important;
   background-image: none !important;
   border: 0 !important;
+  text-decoration: none !important;
   text-shadow: none !important;
   box-shadow: none !important;
 }
@@ -264,42 +276,63 @@ html.bx-apple #menuview .navbar-nav > li > a:hover,
 html.bx-apple #menuview .navbar-nav > li > a:focus,
 html.bx-apple #menuview #tmDrawerActivator:hover,
 html.bx-apple #menuview .btn-link:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
-  color: #fff !important;
-  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #1d1d1f !important;
+  border-radius: 6px;
 }
 
 html.bx-apple #tmNotifications .badge,
 html.bx-apple #menuview .badge {
   background: #ff3b30 !important;
   color: #fff !important;
+  filter: none;
+}
+
+html.bx-apple #globalsearch .input-group,
+html.bx-apple #leftPanels .input-group,
+html.bx-apple #leftPanels form {
+  display: flex !important;
+  align-items: center;
+  background: rgba(118, 118, 128, 0.12) !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  overflow: hidden;
 }
 
 html.bx-apple #globalsearch .form-control,
 html.bx-apple #headerglobalsearchinput,
 html.bx-apple #leftPanels input[type="text"],
-html.bx-apple #leftPanels input[type="search"] {
-  background: #fff !important;
+html.bx-apple #leftPanels input[type="search"],
+html.bx-apple #globalsearch .btn,
+html.bx-apple #leftPanels .btn,
+html.bx-apple #leftPanels .btn-primary,
+html.bx-apple #menuview #globalsearch .btn-primary {
+  background: transparent !important;
+  background-image: none !important;
   color: #1d1d1f !important;
-  border: 1px solid #d2d2d7 !important;
-  border-radius: 10px 0 0 10px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
+  height: 28px;
+  font-size: 13px;
 }
 
 html.bx-apple #globalsearch .btn,
-html.bx-apple #leftPanels .btn-primary {
-  background: #0071e3 !important;
-  color: #fff !important;
-  border: 0 !important;
-  border-radius: 0 10px 10px 0 !important;
-  box-shadow: none !important;
+html.bx-apple #leftPanels form .btn,
+html.bx-apple #leftPanels .input-group .btn {
+  color: #636366 !important;
+  width: 32px;
+  padding: 0 !important;
 }
 
 html.bx-apple #leftPanels,
 html.bx-apple #rightPanels {
-  background: transparent !important;
+  background: #ececee !important;
   border: 0 !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: none !important;
+  min-height: calc(100vh - 52px);
 }
 
 html.bx-apple #leftPanels .panel,
@@ -317,18 +350,30 @@ html.bx-apple #leftPanels .panel-title,
 html.bx-apple #rightPanels .panel-title {
   background: transparent !important;
   border: 0 !important;
-  color: #1d1d1f !important;
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  color: #8e8e93 !important;
+  font-size: 11px !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+html.bx-apple #leftPanels ul,
+html.bx-apple #rightPanels ul {
+  list-style: none !important;
 }
 
 html.bx-apple #leftPanels a,
 html.bx-apple #rightPanels a,
 html.bx-apple #leftPanels .jstree-anchor,
 html.bx-apple #leftPanels .xtree a {
+  display: block;
+  box-sizing: border-box;
+  margin: 1px 8px;
+  padding: 4px 8px;
   color: #1d1d1f !important;
-  text-decoration: none;
+  text-decoration: none !important;
+  font-size: 13px;
+  border-radius: 6px;
 }
 
 html.bx-apple #leftPanels a:hover,
@@ -342,12 +387,12 @@ html.bx-apple #leftPanels .jstree-wholerow-hovered {
 
 html.bx-apple #leftPanels .jstree-clicked,
 html.bx-apple #leftPanels .jstree-wholerow-clicked,
-html.bx-apple #leftPanels .current,
-html.bx-apple #leftPanels .current > a {
-  background: #e4e4e9 !important;
-  border-radius: 8px;
+html.bx-apple #leftPanels .current > a,
+html.bx-apple #leftPanels li.active > a {
+  background: #007aff !important;
+  border-radius: 6px;
   box-shadow: none !important;
-  color: #1d1d1f !important;
+  color: #fff !important;
 }
 
 html.bx-apple #contentcolumn {
@@ -372,7 +417,8 @@ html.bx-apple #hierarchy_breadcrumb .breadcrumb {
 html.bx-apple #hierarchy.breadcrumb > li,
 html.bx-apple #hierarchy.breadcrumb > li > a,
 html.bx-apple #hierarchy.breadcrumb > li + li::before {
-  color: #6e6e73 !important;
+  color: #8e8e93 !important;
+  text-decoration: none !important;
   text-shadow: none !important;
 }
 
@@ -382,9 +428,10 @@ html.bx-apple #hierarchy.breadcrumb > li > a:hover {
 
 html.bx-apple #document-title h1 {
   color: #1d1d1f !important;
-  font-weight: 650;
+  font-size: 28px !important;
+  font-weight: 700 !important;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.12;
   overflow-wrap: break-word;
 }
 
@@ -396,8 +443,8 @@ html.bx-apple .xdoc-modified {
 }
 
 html.bx-apple #xwikicontent {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.45;
   color: #1d1d1f;
 }
 
@@ -412,7 +459,12 @@ html.bx-apple #xwikicontent h4 {
 
 html.bx-apple #xwikicontent a,
 html.bx-apple #xwikicontent a:visited {
-  color: #0066cc;
+  color: #007aff !important;
+  text-decoration: none !important;
+}
+
+html.bx-apple #xwikicontent a:hover {
+  text-decoration: underline !important;
 }
 
 html.bx-apple #contentmenu .btn,
@@ -423,12 +475,14 @@ html.bx-apple #editButtons .btn-default {
   background: rgba(0, 0, 0, 0.05) !important;
   background-image: none !important;
   color: #1d1d1f !important;
-  border: 0 !important;
-  border-radius: 980px !important;
+  border: 0.5px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 7px !important;
   box-shadow: none !important;
   text-shadow: none !important;
+  text-decoration: none !important;
   font-family: inherit;
-  font-weight: 560;
+  font-size: 13px !important;
+  font-weight: 500;
 }
 
 html.bx-apple #contentmenu .btn:hover,
@@ -440,18 +494,19 @@ html.bx-apple .bottombuttons .btn-default:hover {
 html.bx-apple .btn-primary,
 html.bx-apple .btn-success,
 html.bx-apple .bottombuttons .btn-primary {
-  background: #0071e3 !important;
+  background: #007aff !important;
   background-image: none !important;
   color: #fff !important;
   border: 0 !important;
-  border-radius: 980px !important;
+  border-radius: 7px !important;
   box-shadow: none !important;
   text-shadow: none !important;
+  text-decoration: none !important;
 }
 
 html.bx-apple .btn-primary:hover,
 html.bx-apple .btn-success:hover {
-  background: #0077ed !important;
+  background: #0066d6 !important;
   color: #fff !important;
 }
 

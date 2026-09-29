@@ -876,7 +876,7 @@ const EDITOR_THEME_CSS = `
     font-weight: 650;
     color: #1d1d1f;
   }
-  a { color: #0066cc; }
+  a { color: #007aff; text-decoration: none; }
   table { border-collapse: collapse; border: 0; }
   td, th {
     border: 0;

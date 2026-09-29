@@ -12,7 +12,7 @@ export const FEATURES = [
     id: "appleTheme",
     group: "look",
     label: "Thème épuré",
-    description: "Barre sombre, fond gris clair, navigation plus calme, boutons et tableaux allégés.",
+    description: "Chrome façon macOS : barre claire, liste latérale, recherche et boutons du système.",
     default: true,
   },
   {
