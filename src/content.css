@@ -224,7 +224,7 @@ html.bx-apple {
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   --font-family-base: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   --link-color: #007a94;
-  --brand-primary: #6d4cc4;
+  --brand-primary: #007aff;
   --brand-success: #1c8f4e;
   --brand-info: #007a94;
   --brand-warning: #b86a00;
@@ -232,13 +232,13 @@ html.bx-apple {
   --headings-color: #282a36;
   --headings-font-weight: 650;
   --text-muted: #5c6288;
-  --component-active-bg: #bd93f9;
-  --component-active-color: #282a36;
+  --component-active-bg: #007aff;
+  --component-active-color: #ffffff;
   --btn-default-color: #282a36;
   --btn-default-bg: #e6e7ee;
   --btn-default-border: transparent;
-  --btn-primary-color: #282a36;
-  --btn-primary-bg: #bd93f9;
+  --btn-primary-color: #ffffff;
+  --btn-primary-bg: #007aff;
   --btn-success-color: #282a36;
   --btn-success-bg: #50fa7b;
   --navbar-default-bg: #21222c;
@@ -258,7 +258,7 @@ html.bx-apple {
   --input-bg: #e6e7ee;
   --input-border: rgba(98, 114, 164, 0.4);
   --input-color: #282a36;
-  --input-border-focus: #bd93f9;
+  --input-border-focus: #007aff;
   --input-color-placeholder: #7a80a0;
   --panel-bg: #ffffff;
   --panel-default-text: #282a36;
@@ -429,6 +429,101 @@ html.bx-themed #mainContentArea {
   border-radius: 16px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   margin: 12px;
+}
+
+html.bx-themed #xwikieditor,
+html.bx-themed #xwikieditorinner,
+html.bx-themed #editcolumn,
+html.bx-themed .alleditcontent,
+html.bx-themed #xwikitext,
+html.bx-themed #xwikieditcontent,
+html.bx-themed #editMeta,
+html.bx-themed #titleinput,
+html.bx-themed #parentinput {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--text-color) !important;
+}
+
+html.bx-themed #mainEditArea > #hierarchy_breadcrumb {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-bottom: 0 !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: none !important;
+  margin: 12px 12px 0 !important;
+  padding: 12px 20px 2px !important;
+}
+
+html.bx-themed #mainEditArea > main {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-top: 0 !important;
+  border-radius: 0 0 16px 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  margin: 0 12px 12px !important;
+  padding: 8px 16px 16px !important;
+}
+
+html.bx-themed #editMeta label,
+html.bx-themed #editMeta dt,
+html.bx-themed #editMeta .xHint,
+html.bx-themed #rightPanels label,
+html.bx-themed #rightPanels dt,
+html.bx-themed .meta-minorEdit label,
+html.bx-themed .autosave label {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+
+html.bx-themed #editMeta .xRequired,
+html.bx-themed #editMeta .xHint {
+  color: var(--text-muted) !important;
+}
+
+html.bx-themed #editMeta input,
+html.bx-themed #editMeta select,
+html.bx-themed #rightPanels input,
+html.bx-themed #rightPanels select,
+html.bx-themed #commentinput {
+  background: var(--input-bg) !important;
+  color: var(--input-color) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #rightPanels .largepanel,
+html.bx-themed #leftPanels .largepanel {
+  background: var(--card-bg) !important;
+  color: var(--panel-default-text) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  margin: 10px !important;
+  padding: 8px 12px 12px;
+}
+
+html.bx-themed .bottombuttons,
+html.bx-themed .sticky-buttons {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--xwiki-border-color) !important;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.bx-themed #rightPanelsToggle {
+  background: var(--body-bg) !important;
+  color: var(--text-muted) !important;
+  border: 0 !important;
+  border-radius: 10px 0 0 10px !important;
+  box-shadow: none !important;
+  width: 16px !important;
+  padding: 10px 0 !important;
 }
 
 html.bx-themed #leftPanels .panel,
@@ -950,16 +1045,46 @@ html.bx-themed .dropdown-menu {
   border: 1px solid var(--dropdown-border) !important;
   border-radius: 14px !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
-  color: var(--text-color);
+  color: var(--text-color) !important;
+  padding: 6px !important;
 }
 
-html.bx-themed .dropdown-menu > li > a {
+html.bx-themed .dropdown-menu > li > a,
+html.bx-themed .dropdown-menu a,
+html.bx-themed .dropdown-menu .fa {
   color: var(--dropdown-link-color) !important;
+  text-shadow: none !important;
+}
+
+html.bx-themed #contentmenu .dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html.bx-themed #contentmenu .dropdown-menu a {
+  display: block;
+  padding: 7px 10px !important;
   border-radius: 8px;
+  text-decoration: none !important;
+}
+
+html.bx-themed #contentmenu .dropdown-menu .fa {
+  width: 1.25em;
+  margin-right: 6px;
+  text-align: center;
+}
+
+html.bx-themed #contentmenu .dropdown-menu dd + dd {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--dropdown-divider-bg);
 }
 
 html.bx-themed .dropdown-menu > li > a:hover,
-html.bx-themed .dropdown-menu > li > a:focus {
+html.bx-themed .dropdown-menu > li > a:focus,
+html.bx-themed .dropdown-menu a:hover,
+html.bx-themed .dropdown-menu a:focus {
   background: var(--dropdown-link-hover-bg) !important;
   color: var(--dropdown-link-hover-color) !important;
 }
@@ -987,17 +1112,144 @@ html.bx-themed #xwikicontent .box {
   border-radius: 12px;
 }
 
-html.bx-themed .cke {
+html.bx-themed .cke,
+html.bx-themed .cke_chrome {
+  border: 1px solid var(--xwiki-border-color) !important;
   border-radius: 14px !important;
   overflow: hidden;
-  border-color: var(--xwiki-border-color) !important;
+  background: var(--card-bg) !important;
+  box-shadow: none !important;
 }
 
+html.bx-themed .cke_inner,
 html.bx-themed .cke_top,
-html.bx-themed .cke_bottom {
-  background: var(--table-head-bg) !important;
+html.bx-themed .cke_bottom,
+html.bx-themed .cke_toolbox {
+  background: var(--card-bg) !important;
   background-image: none !important;
-  border-color: var(--xwiki-border-color) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_top {
+  border-bottom: 1px solid var(--xwiki-border-color) !important;
+  padding: 8px 10px 2px !important;
+}
+
+html.bx-themed .cke_bottom {
+  border-top: 1px solid var(--xwiki-border-color) !important;
+  padding: 4px 10px !important;
+}
+
+html.bx-apple .cke_contents { background: #ffffff !important; }
+html.bx-dracula .cke_contents { background: #282a36 !important; }
+
+html.bx-themed .cke_toolgroup {
+  margin: 0 8px 6px 0 !important;
+  padding: 2px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: var(--search-fill) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+html.bx-themed a.cke_button,
+html.bx-themed a.cke_button_off,
+html.bx-themed a.cke_button_disabled {
+  padding: 5px 6px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.bx-themed a.cke_button:hover,
+html.bx-themed a.cke_button:focus,
+html.bx-themed a.cke_button:active,
+html.bx-themed .cke_combo_button:hover,
+html.bx-themed .cke_combo_on .cke_combo_button {
+  background: var(--sidebar-hover) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed a.cke_button_on {
+  background: var(--component-active-bg) !important;
+  box-shadow: none !important;
+}
+
+html.bx-dracula a.cke_button_on {
+  background: #f8f8f2 !important;
+}
+
+html.bx-themed a.cke_button_disabled {
+  opacity: 0.38 !important;
+}
+
+html.bx-themed .cke_button_label,
+html.bx-themed .cke_combo_text,
+html.bx-themed .cke_combo_label {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+  font-family: var(--font-family-base) !important;
+}
+
+html.bx-themed .cke_combo_button {
+  margin: 0 8px 6px 0 !important;
+  padding: 2px 6px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: var(--search-fill) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .cke_toolbar_separator {
+  background: var(--xwiki-border-color) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  width: 1px !important;
+}
+
+html.bx-themed .cke_path a,
+html.bx-themed .cke_path_item,
+html.bx-themed .cke_path_empty {
+  color: var(--text-muted) !important;
+  text-shadow: none !important;
+  font-family: var(--font-family-base) !important;
+}
+
+html.bx-themed .cke_path a:hover,
+html.bx-themed .cke_path a:focus {
+  color: var(--link-color) !important;
+  background: transparent !important;
+}
+
+html.bx-dracula .cke_button_icon,
+html.bx-dracula .cke_combo_arrow,
+html.bx-dracula .cke_button_arrow {
+  filter: brightness(0) invert(1);
+}
+
+html.bx-dracula .cke_button__textcolor .cke_button_icon,
+html.bx-dracula .cke_button__bgcolor .cke_button_icon {
+  filter: none;
+}
+
+html.bx-dracula a.cke_button_on .cke_button_icon {
+  filter: brightness(0);
+}
+
+html.bx-themed .cke_panel {
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 12px !important;
+  background: var(--card-bg) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28) !important;
+  overflow: hidden;
 }
 
 html.bx-apple { color-scheme: light; }
@@ -1099,7 +1351,7 @@ html.bx-themed #mainContentArea .panel,
 html.bx-themed #mainContentArea .panel-default,
 html.bx-themed #mainContentArea .panel-body,
 html.bx-themed #mainContentArea .panel-heading,
-html.bx-themed #xwikicontent .box,
+html.bx-themed #xwikicontent .box:not(.errormessage):not(.warningmessage):not(.successmessage):not(.infomessage),
 html.bx-themed #xwikicontent .well,
 html.bx-themed #mainContentArea .tab-content,
 html.bx-themed #mainContentArea .list-group-item,
@@ -1139,6 +1391,198 @@ html.bx-themed #xwikicontent code {
   background: var(--body-bg) !important;
   color: var(--text-color) !important;
   border-radius: 8px;
+}
+
+html.bx-themed .box.errormessage,
+html.bx-themed .box.warningmessage,
+html.bx-themed .box.successmessage,
+html.bx-themed .box.infomessage {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  align-items: start;
+  margin: 16px 0 !important;
+  padding: 14px 16px !important;
+  border-radius: 14px !important;
+  border-style: solid !important;
+  border-width: 1px 1px 1px 4px !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed .box.errormessage > .icon-block,
+html.bx-themed .box.warningmessage > .icon-block,
+html.bx-themed .box.successmessage > .icon-block,
+html.bx-themed .box.infomessage > .icon-block {
+  position: static !important;
+  float: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 0 !important;
+  background: transparent !important;
+  font-size: 18px;
+}
+
+html.bx-themed .box.errormessage .box-title,
+html.bx-themed .box.warningmessage .box-title,
+html.bx-themed .box.successmessage .box-title,
+html.bx-themed .box.infomessage .box-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+html.bx-themed .box.errormessage p,
+html.bx-themed .box.warningmessage p,
+html.bx-themed .box.successmessage p,
+html.bx-themed .box.infomessage p {
+  margin: 0 0 6px !important;
+  color: inherit !important;
+}
+
+html.bx-apple .box.errormessage {
+  background: #fff1f0 !important;
+  border-color: #ffd4d0 #ffd4d0 #ffd4d0 #e23b4a !important;
+  color: #282a36 !important;
+}
+html.bx-apple .box.errormessage .fa,
+html.bx-apple .box.errormessage .box-title { color: #c42318 !important; }
+
+html.bx-apple .box.warningmessage {
+  background: #fff8ee !important;
+  border-color: #ffe3c2 #ffe3c2 #ffe3c2 #b86a00 !important;
+  color: #282a36 !important;
+}
+html.bx-apple .box.warningmessage .fa,
+html.bx-apple .box.warningmessage .box-title { color: #8a4b00 !important; }
+
+html.bx-apple .box.successmessage {
+  background: #eefbf3 !important;
+  border-color: #c9f0d8 #c9f0d8 #c9f0d8 #1c8f4e !important;
+  color: #282a36 !important;
+}
+html.bx-apple .box.successmessage .fa,
+html.bx-apple .box.successmessage .box-title { color: #0f6b38 !important; }
+
+html.bx-apple .box.infomessage {
+  background: #eef5ff !important;
+  border-color: #d3e6ff #d3e6ff #d3e6ff #007aff !important;
+  color: #282a36 !important;
+}
+html.bx-apple .box.infomessage .fa,
+html.bx-apple .box.infomessage .box-title { color: #0056b3 !important; }
+
+html.bx-dracula .box.errormessage {
+  background: rgba(255, 85, 85, 0.14) !important;
+  border-color: rgba(255, 85, 85, 0.35) rgba(255, 85, 85, 0.35) rgba(255, 85, 85, 0.35) #ff5555 !important;
+  color: #f8f8f2 !important;
+}
+html.bx-dracula .box.errormessage .fa,
+html.bx-dracula .box.errormessage .box-title { color: #ff5555 !important; }
+
+html.bx-dracula .box.warningmessage {
+  background: rgba(255, 184, 108, 0.14) !important;
+  border-color: rgba(255, 184, 108, 0.35) rgba(255, 184, 108, 0.35) rgba(255, 184, 108, 0.35) #ffb86c !important;
+  color: #f8f8f2 !important;
+}
+html.bx-dracula .box.warningmessage .fa,
+html.bx-dracula .box.warningmessage .box-title { color: #ffb86c !important; }
+
+html.bx-dracula .box.successmessage {
+  background: rgba(80, 250, 123, 0.12) !important;
+  border-color: rgba(80, 250, 123, 0.35) rgba(80, 250, 123, 0.35) rgba(80, 250, 123, 0.35) #50fa7b !important;
+  color: #f8f8f2 !important;
+}
+html.bx-dracula .box.successmessage .fa,
+html.bx-dracula .box.successmessage .box-title { color: #50fa7b !important; }
+
+html.bx-dracula .box.infomessage {
+  background: rgba(139, 233, 253, 0.12) !important;
+  border-color: rgba(139, 233, 253, 0.35) rgba(139, 233, 253, 0.35) rgba(139, 233, 253, 0.35) #8be9fd !important;
+  color: #f8f8f2 !important;
+}
+html.bx-dracula .box.infomessage .fa,
+html.bx-dracula .box.infomessage .box-title { color: #8be9fd !important; }
+
+html.bx-dracula #xwikicontent .box:has(.code),
+html.bx-dracula #xwikicontent div.code,
+html.bx-dracula #xwikicontent pre {
+  background: #282a36 !important;
+  color: #f8f8f2 !important;
+  border: 1px solid rgba(98, 114, 164, 0.45) !important;
+  border-radius: 12px !important;
+}
+
+html.bx-dracula #xwikicontent div.code,
+html.bx-dracula #xwikicontent pre {
+  padding: 14px 16px !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 1.55;
+}
+
+html.bx-dracula #xwikicontent div.code span,
+html.bx-dracula #xwikicontent pre span {
+  color: #f8f8f2 !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#3C7A7A"],
+html.bx-dracula #xwikicontent div.code span[style*="#3c7a7a"],
+html.bx-dracula #xwikicontent div.code span[style*="#3D7B7B"],
+html.bx-dracula #xwikicontent div.code span[style*="#408080"],
+html.bx-dracula #xwikicontent pre span[style*="#3C7A7A"],
+html.bx-dracula #xwikicontent pre span[style*="#408080"] {
+  color: #a9b6ee !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#008000"],
+html.bx-dracula #xwikicontent div.code span[style*="#B00040"],
+html.bx-dracula #xwikicontent div.code span[style*="#800080"],
+html.bx-dracula #xwikicontent pre span[style*="#008000"] {
+  color: #ff79c6 !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#19177C"],
+html.bx-dracula #xwikicontent div.code span[style*="#19177c"],
+html.bx-dracula #xwikicontent div.code span[style*="#0000FF"],
+html.bx-dracula #xwikicontent div.code span[style*="#000080"],
+html.bx-dracula #xwikicontent pre span[style*="#19177C"],
+html.bx-dracula #xwikicontent pre span[style*="#0000FF"] {
+  color: #8be9fd !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#666666"],
+html.bx-dracula #xwikicontent div.code span[style*="#717171"],
+html.bx-dracula #xwikicontent pre span[style*="#666666"] {
+  color: #ffb86c !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#BA2121"],
+html.bx-dracula #xwikicontent div.code span[style*="#BB6622"],
+html.bx-dracula #xwikicontent div.code span[style*="#AA5D1F"],
+html.bx-dracula #xwikicontent pre span[style*="#BA2121"] {
+  color: #f1fa8c !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#A00000"],
+html.bx-dracula #xwikicontent div.code span[style*="#FF0000"],
+html.bx-dracula #xwikicontent div.code span[style*="#E40000"] {
+  color: #ff5555 !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#AA22FF"],
+html.bx-dracula #xwikicontent div.code span[style*="#880000"],
+html.bx-dracula #xwikicontent pre span[style*="#AA22FF"] {
+  color: #bd93f9 !important;
+}
+
+html.bx-dracula #xwikicontent div.code span[style*="#9C6500"],
+html.bx-dracula #xwikicontent div.code span[style*="#BC7A00"],
+html.bx-dracula #xwikicontent div.code span[style*="#687822"],
+html.bx-dracula #xwikicontent div.code span[style*="#7D9029"],
+html.bx-dracula #xwikicontent div.code span[style*="#008400"] {
+  color: #50fa7b !important;
 }
 
 html.bx-themed #xwikicontent .userInfo {
@@ -1254,6 +1698,80 @@ html.bx-themed #xwikidata {
   box-shadow: none !important;
 }
 
+html.bx-themed #xdocFooter {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 12px 16px !important;
+}
+
+html.bx-themed #xdocFooter .like-container,
+html.bx-themed #xdocFooter #xdocTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+html.bx-themed #xdocFooter #xdocAuthors {
+  margin-left: auto;
+  color: var(--text-muted) !important;
+}
+
+html.bx-themed #xdocFooter .like-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0 !important;
+  border-radius: 999px !important;
+}
+
+html.bx-themed #xdocFooter .tag-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px 2px 10px;
+  background: var(--search-fill);
+  border-radius: 999px;
+}
+
+html.bx-themed #xdocFooter .tag-wrapper .separator {
+  display: none !important;
+}
+
+html.bx-themed #xdocFooter .tag a {
+  color: var(--text-color) !important;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+html.bx-themed #xdocFooter .tag-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  color: var(--text-muted) !important;
+  font-size: 11px;
+  line-height: 1;
+  text-decoration: none !important;
+}
+
+html.bx-themed #xdocFooter .tag-delete:hover {
+  background: var(--sidebar-hover);
+  color: var(--text-color) !important;
+}
+
+html.bx-themed #xdocFooter .tag-add a {
+  text-decoration: none !important;
+  font-weight: 650;
+}
+
 html.bx-themed #docextrapanes,
 html.bx-themed #docExtraTabs,
 html.bx-themed #xwikidatacontents {
@@ -1263,27 +1781,53 @@ html.bx-themed #xwikidatacontents {
 }
 
 html.bx-themed ul.xwikitabbar,
-html.bx-themed .nav-tabs {
+html.bx-themed #xwikidata .nav-tabs {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 6px;
+  float: none !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
   border: 0 !important;
   box-shadow: none !important;
 }
 
-html.bx-themed .xwikitabbar > li > a,
-html.bx-themed .nav-tabs > li > a {
+html.bx-themed .xwikitabbar > li,
+html.bx-themed #xwikidata .nav-tabs > li {
+  float: none !important;
+  margin: 0 !important;
+}
+
+html.bx-themed #xwikidata .xwikitabbar > li > a,
+html.bx-themed #xwikidata .nav-tabs > li > a {
+  display: inline-block;
+  padding: 6px 12px !important;
   background: transparent !important;
   color: var(--text-muted) !important;
   border: 0 !important;
-  border-radius: 8px !important;
+  border-radius: 999px !important;
   box-shadow: none !important;
+  font-weight: 600;
+  text-decoration: none !important;
 }
 
-html.bx-themed .xwikitabbar > li.active > a,
-html.bx-themed .xwikitabbar > li.active > a:focus,
-html.bx-themed .nav-tabs > li.active > a,
-html.bx-themed .nav-tabs > li.active > a:focus {
+html.bx-themed #xwikidata .xwikitabbar > li > a:hover,
+html.bx-themed #xwikidata .nav-tabs > li > a:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--text-color) !important;
+}
+
+html.bx-themed #xwikidata .xwikitabbar > li.active > a,
+html.bx-themed #xwikidata .xwikitabbar > li.active > a:focus,
+html.bx-themed #xwikidata .nav-tabs > li.active > a,
+html.bx-themed #xwikidata .nav-tabs > li.active > a:focus {
   background: var(--component-active-bg) !important;
   color: var(--component-active-color) !important;
   border: 0 !important;
+}
+
+html.bx-themed #xwikidata .noitems {
+  color: var(--text-muted) !important;
 }
 
 html.bx-themed #xwikidata table,

@@ -12,7 +12,7 @@ export const FEATURES = [
     id: "appleTheme",
     group: "look",
     label: "Thème épuré",
-    description: "Même interface que Dracula, en clair : cartes blanches, tableaux en creux, accent violet.",
+    description: "Même interface que Dracula, en clair : cartes blanches, tableaux en creux, accent bleu.",
     default: true,
   },
   {

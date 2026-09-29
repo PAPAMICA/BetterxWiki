@@ -142,6 +142,7 @@ function mount() {
     scrollTimer = setTimeout(rememberScroll, 200);
   }, { passive: true });
   window.addEventListener("pagehide", rememberScroll);
+  watchEditorPanels();
 
   applyPublishedSettings();
   setTimeout(() => {
@@ -251,6 +252,7 @@ function attachEditor(editor) {
     activeEditor = editor;
     refresh();
   }
+  syncEditorTheme(editor);
 }
 
 function bindEditorScroll(editor) {
@@ -853,6 +855,7 @@ function syncViewFeatures() {
   if (!enabled("copyTableTsv")) hideCopyButton();
   const instances = window.CKEDITOR?.instances || {};
   for (const editor of Object.values(instances)) syncEditorTheme(editor);
+  paintEditorPanels();
 }
 
 function syncEditorTheme(editor) {
@@ -873,6 +876,57 @@ function syncEditorTheme(editor) {
 function editorThemeCss() {
   if (enabled("draculaTheme")) return DRACULA_EDITOR_CSS;
   if (enabled("appleTheme")) return APPLE_EDITOR_CSS;
+  return "";
+}
+
+function watchEditorPanels() {
+  const observer = new MutationObserver(paintEditorPanels);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+}
+
+function paintEditorPanels() {
+  const css = panelThemeCss();
+  for (const frame of document.querySelectorAll("iframe.cke_panel_frame")) {
+    let doc;
+    try {
+      doc = frame.contentDocument;
+    } catch {
+      continue;
+    }
+    if (!doc?.head) continue;
+    const current = doc.getElementById("bx-panel-theme");
+    if (!css) {
+      current?.remove();
+      continue;
+    }
+    const style = current || doc.createElement("style");
+    style.id = "bx-panel-theme";
+    if (style.textContent !== css) style.textContent = css;
+    if (!current) doc.head.appendChild(style);
+  }
+}
+
+function panelThemeCss() {
+  if (enabled("draculaTheme")) {
+    return `
+      html, body, .cke_panel_list, .cke_panel_block, .cke_colorblock { background: #44475a !important; color: #f8f8f2 !important; }
+      .cke_panel_grouptitle { background: #282a36 !important; color: #d4d7ee !important; border: 0 !important; }
+      .cke_panel_listItem a, .cke_colormore { color: #f8f8f2 !important; }
+      .cke_panel_listItem a:hover, .cke_panel_listItem a:focus, .cke_panel_listItem.cke_selected a {
+        background: #6272a4 !important; color: #f8f8f2 !important; border-color: transparent !important;
+      }
+    `;
+  }
+  if (enabled("appleTheme")) {
+    return `
+      html, body, .cke_panel_list, .cke_panel_block, .cke_colorblock { background: #ffffff !important; color: #282a36 !important; }
+      .cke_panel_grouptitle { background: #e6e7ee !important; color: #5c6288 !important; border: 0 !important; }
+      .cke_panel_listItem a, .cke_colormore { color: #282a36 !important; }
+      .cke_panel_listItem a:hover, .cke_panel_listItem a:focus, .cke_panel_listItem.cke_selected a {
+        background: #dcdff0 !important; color: #282a36 !important; border-color: transparent !important;
+      }
+    `;
+  }
   return "";
 }
 
