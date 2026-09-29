@@ -443,17 +443,26 @@ html.bx-themed #rightPanels .panel {
   color: var(--panel-default-text);
 }
 
+html.bx-themed body#body.panel-left-width-Medium {
+  --panel-column-left-width: clamp(300px, 24vw, 400px);
+}
+
+html.bx-themed #leftPanels h1.xwikipaneltitle,
 html.bx-themed #leftPanels h2.xwikipaneltitle,
+html.bx-themed #rightPanels h1.xwikipaneltitle,
 html.bx-themed #rightPanels h2.xwikipaneltitle {
   background: transparent !important;
+  background-image: none !important;
   border: 0 !important;
+  box-shadow: none !important;
   color: var(--panel-header-text) !important;
   font-size: 11px !important;
   font-weight: 650 !important;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin: 8px 12px 4px !important;
+  margin: 10px 12px 6px !important;
   padding: 0 !important;
+  overflow: visible !important;
 }
 
 html.bx-themed #leftPanels .globalsearch.input-group {
@@ -517,11 +526,11 @@ html.bx-themed #leftPanels .applicationsPanel > li {
 }
 
 html.bx-themed #leftPanels .jstree-children > .jstree-node {
-  margin-left: 12px !important;
+  margin-left: 8px !important;
 }
 
 html.bx-themed #leftPanels .jstree-ocl {
-  width: 16px !important;
+  width: 14px !important;
   height: 28px !important;
   line-height: 28px !important;
   margin: 0 !important;
@@ -542,11 +551,11 @@ html.bx-themed #leftPanels .jstree-leaf > .jstree-ocl {
 html.bx-themed #leftPanels .jstree-anchor {
   display: inline-block;
   box-sizing: border-box;
-  width: calc(100% - 18px);
+  width: calc(100% - 16px);
   height: auto !important;
-  min-height: 28px;
+  min-height: 26px;
   margin: 0;
-  padding: 5px 8px !important;
+  padding: 4px 8px !important;
   border-radius: 8px;
   color: var(--text-color) !important;
   background: transparent !important;
@@ -981,6 +990,152 @@ html.bx-themed #xwikicontent code {
   background: var(--body-bg) !important;
   color: var(--text-color) !important;
   border-radius: 8px;
+}
+
+html.bx-themed #xwikicontent .userInfo {
+  background: var(--body-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .userInfo h2,
+html.bx-themed #xwikicontent .userRecentChanges > h2 {
+  background: transparent !important;
+  color: var(--headings-color) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .userInfo a,
+html.bx-themed #xwikicontent .notification-page a,
+html.bx-themed #xwikicontent .notification-description a {
+  color: var(--link-color) !important;
+}
+
+html.bx-themed #xwikicontent #user-vertical-menu .user-menu-title,
+html.bx-themed #xwikicontent #user-vertical-menu .user-menu-title a {
+  display: block;
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-size: 11px !important;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 10px 4px !important;
+  text-decoration: none !important;
+}
+
+html.bx-themed #xwikicontent .vertical-menu .category-tab a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1px 4px;
+  padding: 6px 10px !important;
+  background: transparent !important;
+  color: var(--text-color) !important;
+  border: 0 !important;
+  border-radius: 8px;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+html.bx-themed #xwikicontent .vertical-menu .category-tab a:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--text-color) !important;
+}
+
+html.bx-themed #xwikicontent .vertical-menu .category-tab.current > a {
+  background: var(--component-active-bg) !important;
+  color: var(--component-active-color) !important;
+}
+
+html.bx-themed #xwikicontent .attachment-picker .button,
+html.bx-themed #xwikicontent a.button {
+  background: var(--btn-default-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+html.bx-themed #avatar img {
+  border-radius: 16px;
+}
+
+html.bx-themed #xwikicontent .notification-event,
+html.bx-themed #xwikicontent .notifications-macro .notification-event {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .notification-icon .img-thumbnail {
+  background: var(--body-bg) !important;
+  color: var(--text-color) !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .notification-content,
+html.bx-themed #xwikicontent .notification-description,
+html.bx-themed #xwikicontent .text-muted {
+  color: var(--text-muted) !important;
+}
+
+html.bx-themed #xwikicontent .notification-page,
+html.bx-themed #xwikicontent .notification-description .user-name {
+  color: var(--text-color);
+}
+
+html.bx-themed #xdocFooter,
+html.bx-themed #xwikidata {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 16px !important;
+  margin: 0 12px 12px !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #docextrapanes,
+html.bx-themed #docExtraTabs,
+html.bx-themed #xwikidatacontents {
+  background: transparent !important;
+  color: var(--text-color) !important;
+  border-color: transparent !important;
+}
+
+html.bx-themed .xwikitabbar > li > a {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border-color: transparent !important;
+  border-radius: 8px !important;
+}
+
+html.bx-themed .xwikitabbar > li.active > a,
+html.bx-themed .xwikitabbar > li.active > a:focus {
+  background: var(--component-active-bg) !important;
+  color: var(--component-active-color) !important;
+  border-color: transparent !important;
+}
+
+html.bx-themed #footerglobal,
+html.bx-themed #footerglobal #xwikiplatformversion {
+  background: var(--navbar-default-bg) !important;
+  color: var(--navbar-default-color) !important;
+  border: 0 !important;
+}
+
+html.bx-themed #footerglobal a {
+  color: var(--link-color) !important;
 }
 
 html.bx-themed ::selection {
