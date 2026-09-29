@@ -22,9 +22,16 @@ function render(current) {
 
       const input = document.createElement("input");
       input.type = "checkbox";
+      input.dataset.feature = feature.id;
       input.checked = current[feature.id] !== false;
       input.addEventListener("change", () => {
         current[feature.id] = input.checked;
+        if (input.checked && (feature.id === "appleTheme" || feature.id === "draculaTheme")) {
+          const other = feature.id === "appleTheme" ? "draculaTheme" : "appleTheme";
+          current[other] = false;
+          const otherInput = form.querySelector(`input[data-feature="${other}"]`);
+          if (otherInput) otherInput.checked = false;
+        }
         const snapshot = { ...current };
         writeQueue = writeQueue.then(() => chrome.storage.sync.set({ [STORAGE_KEY]: snapshot }));
       });

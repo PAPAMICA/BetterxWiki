@@ -12,8 +12,15 @@ export const FEATURES = [
     id: "appleTheme",
     group: "look",
     label: "Thème épuré",
-    description: "Recolorie le thème Flamingo comme une fenêtre macOS : barre, liens, boutons et tableaux.",
+    description: "Fenêtre claire, barre sombre, cartes arrondies et tableaux en liste.",
     default: true,
+  },
+  {
+    id: "draculaTheme",
+    group: "look",
+    label: "Thème Dracula",
+    description: "Palette officielle Dracula : fond #282a36, cartes #44475a, accent violet.",
+    default: false,
   },
   {
     id: "tableRows",

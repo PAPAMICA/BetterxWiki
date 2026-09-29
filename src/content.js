@@ -3,6 +3,7 @@ const SETTINGS_NODE_ID = "betterxwiki-settings";
 const SETTINGS_EVENT = "betterxwiki-settings";
 const DEFAULT_SETTINGS = {
   appleTheme: true,
+  draculaTheme: false,
   tableRows: true,
   tableColumns: true,
   tableDelete: true,
@@ -841,7 +842,11 @@ function ensureHighlightStyle(doc) {
 }
 
 function syncViewFeatures() {
-  document.documentElement.classList.toggle("bx-apple", enabled("appleTheme"));
+  const dracula = enabled("draculaTheme");
+  const apple = enabled("appleTheme") && !dracula;
+  document.documentElement.classList.toggle("bx-dracula", dracula);
+  document.documentElement.classList.toggle("bx-apple", apple);
+  document.documentElement.classList.toggle("bx-themed", apple || dracula);
   document.documentElement.classList.toggle("bx-sticky", enabled("stickyHeaders"));
   syncStickyOffset();
   searchButton.hidden = !enabled("pageSearch");
@@ -854,17 +859,24 @@ function syncEditorTheme(editor) {
   const doc = editor?.document?.$;
   if (!doc?.head) return;
   const current = doc.getElementById("bx-apple-editor");
-  if (!enabled("appleTheme")) {
+  const css = editorThemeCss();
+  if (!css) {
     current?.remove();
     return;
   }
   const style = current || doc.createElement("style");
   style.id = "bx-apple-editor";
-  style.textContent = EDITOR_THEME_CSS;
+  style.textContent = css;
   if (!current) doc.head.appendChild(style);
 }
 
-const EDITOR_THEME_CSS = `
+function editorThemeCss() {
+  if (enabled("draculaTheme")) return DRACULA_EDITOR_CSS;
+  if (enabled("appleTheme")) return APPLE_EDITOR_CSS;
+  return "";
+}
+
+const APPLE_EDITOR_CSS = `
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
     color: #1d1d1f;
@@ -882,6 +894,21 @@ const EDITOR_THEME_CSS = `
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
+`;
+
+const DRACULA_EDITOR_CSS = `
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    background: #282a36;
+    color: #f8f8f2;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { color: #f8f8f2; font-weight: 650; }
+  a { color: #8be9fd; text-decoration: none; }
+  table { border-collapse: separate; border: 1px solid #6272a4; border-radius: 12px; }
+  th { color: #6272a4; }
+  td, th { border: 0; border-bottom: 1px solid #44475a; }
 `;
 
 function syncStickyOffset() {

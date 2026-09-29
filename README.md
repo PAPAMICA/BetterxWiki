@@ -23,7 +23,10 @@ Les couleurs sont enregistrées comme couleur de fond, donc elles restent après
 
 ## Apparence
 
-Le thème épuré reprend les variables du thème Flamingo (couleurs, polices, boutons, tableaux, barre) et les aligne sur une fenêtre macOS. Le logo blanc reste sur un fond sombre. Il se désactive comme les autres fonctions.
+Deux habillages, un seul à la fois. Les deux mettent la barre en sombre et posent le menu, la page et les tableaux dans des cartes arrondies.
+
+- Thème épuré : fond clair, cartes blanches, accent bleu.
+- Thème Dracula : palette officielle (fond #282a36, cartes #44475a, liens cyan, accent violet #bd93f9).
 
 ## Lecture
 
