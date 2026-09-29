@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Better xWiki",
+  "version": "1.0.0",
+  "minimum_chrome_version": "111",
+  "description": "Accélère l’édition des tableaux dans l’éditeur visuel xWiki.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Better xWiki",
+    "default_popup": "src/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/bridge.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ]
+}
