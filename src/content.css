@@ -664,6 +664,28 @@ html.bx-themed #leftPanelsToggle {
   box-shadow: none !important;
 }
 
+html.bx-themed #contentcolumn .main {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #contentcolumn .main > #hierarchy_breadcrumb {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-bottom: 0 !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: none !important;
+  margin: 12px 12px 0 !important;
+  padding: 12px 20px 2px !important;
+}
+
+html.bx-themed #contentcolumn .main > #hierarchy_breadcrumb + #mainContentArea {
+  margin-top: 0 !important;
+  border-top: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
 html.bx-themed #hierarchy.breadcrumb,
 html.bx-themed #hierarchy.breadcrumb > li,
 html.bx-themed #hierarchy.breadcrumb > li > a,
@@ -672,6 +694,91 @@ html.bx-themed #hierarchy.breadcrumb > li + li::before {
   color: var(--breadcrumb-color) !important;
   box-shadow: none !important;
   text-shadow: none !important;
+}
+
+html.bx-themed #hierarchy .dropdown-toggle {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--text-muted) !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #mainContentArea > hr {
+  border: 0 !important;
+  border-top: 1px solid var(--xwiki-border-color) !important;
+  background: transparent !important;
+  height: 0;
+  margin: 4px 0 18px !important;
+  opacity: 1;
+}
+
+html.bx-themed #xwikicontent ul.wikitoc {
+  list-style: none;
+  margin: 8px 0 22px;
+  padding: 6px;
+  background: var(--body-bg);
+  border-radius: 12px;
+}
+
+html.bx-themed #xwikicontent ul.wikitoc li {
+  list-style: none;
+  margin: 0;
+}
+
+html.bx-themed #xwikicontent ul.wikitoc a {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-decoration: none !important;
+}
+
+html.bx-themed #xwikicontent ul.wikitoc a:hover {
+  background: var(--sidebar-hover);
+}
+
+html.bx-themed #xwikicontent ul:not(.jstree-children):not(.jstree-container-ul):not(.wikitoc) > li::marker {
+  color: var(--brand-primary);
+}
+
+html.bx-themed #xwikicontent .edit_section {
+  color: var(--text-muted) !important;
+}
+
+html.bx-themed #xwikicontent .edit_section:hover {
+  color: var(--link-color) !important;
+}
+
+html.bx-themed #xwikicontent .jstree-node,
+html.bx-themed #xwikicontent .jstree-icon,
+html.bx-themed #xwikicontent .jstree-ocl,
+html.bx-themed #xwikicontent .jstree-children {
+  background: transparent !important;
+  background-image: none !important;
+  border-left: 0 !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .jstree-themeicon {
+  display: none !important;
+}
+
+html.bx-themed #xwikicontent .jstree-anchor {
+  height: auto !important;
+  line-height: 1.4 !important;
+  padding: 3px 8px !important;
+  border-radius: 8px;
+  color: var(--link-color) !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .jstree-hovered {
+  background: var(--sidebar-hover) !important;
+  color: var(--text-color) !important;
+  box-shadow: none !important;
+}
+
+html.bx-themed #xwikicontent .jstree-ocl::before {
+  color: var(--text-muted) !important;
 }
 
 html.bx-themed #document-title h1,
