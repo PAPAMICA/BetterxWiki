@@ -86,6 +86,13 @@ export const FEATURES = [
     default: true,
   },
   {
+    id: "sideToolbar",
+    group: "edit",
+    label: "Barre à droite",
+    description: "En édition classique, fixe la barre d’outils en une colonne à droite.",
+    default: true,
+  },
+  {
     id: "alertBlocks",
     group: "edit",
     label: "Blocs d’alerte",

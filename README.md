@@ -15,6 +15,7 @@ Les couleurs sont enregistrées comme couleur de fond, donc elles restent après
 
 ## Édition
 
+- barre d’outils en colonne à droite, en édition classique
 - blocs d’alerte : info, succès, attention, erreur
 - raccourcis pour le code, l’info et la table des matières
 - collage d’un tableau Excel ou Sheets sans largeurs de colonnes imposées

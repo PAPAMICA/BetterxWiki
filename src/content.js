@@ -18,6 +18,7 @@ const DEFAULT_SETTINGS = {
   tablePasteClean: true,
   editorFullscreen: true,
   editorOutline: true,
+  sideToolbar: true,
   stickyHeaders: true,
   copyTableTsv: true,
   pageSearch: true,
@@ -582,8 +583,9 @@ function updateEditorChrome() {
 
 function mountEditorTools(editor) {
   const chrome = editor.container?.$;
-  if (!chrome?.classList.contains("cke_float")) {
+  if (!chrome?.classList.contains("cke_float") || !enabled("sideToolbar")) {
     if (editorBar.parentElement && editorBar.parentElement !== document.body) document.body.append(editorBar);
+    chrome?.querySelector(".bx-cke-tools")?.remove();
     return false;
   }
   const toolbox = chrome.querySelector(".cke_toolbox");
@@ -877,6 +879,7 @@ function syncViewFeatures() {
   document.documentElement.classList.toggle("bx-dracula", dracula);
   document.documentElement.classList.toggle("bx-apple", apple);
   document.documentElement.classList.toggle("bx-themed", apple || dracula);
+  document.documentElement.classList.toggle("bx-side-toolbar", enabled("sideToolbar"));
   document.documentElement.classList.toggle("bx-sticky", enabled("stickyHeaders"));
   syncStickyOffset();
   searchButton.hidden = !enabled("pageSearch");
@@ -884,6 +887,7 @@ function syncViewFeatures() {
   const instances = window.CKEDITOR?.instances || {};
   for (const editor of Object.values(instances)) syncEditorTheme(editor);
   paintEditorPanels();
+  updateEditorChrome();
 }
 
 function syncEditorTheme(editor) {
@@ -926,6 +930,7 @@ function scheduleFloatPanels() {
 }
 
 function placeFloatPanels() {
+  if (!enabled("sideToolbar")) return;
   const rail = document.querySelector(".cke_float");
   if (!rail) return;
   const railStyle = getComputedStyle(rail);

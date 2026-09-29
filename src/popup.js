@@ -12,18 +12,31 @@ function render(current) {
     const features = FEATURES.filter((feature) => feature.group === group.id);
     if (!features.length) continue;
 
+    const section = document.createElement("section");
     const heading = document.createElement("h2");
     heading.textContent = group.label;
-    form.append(heading);
+    const card = document.createElement("div");
+    card.className = "card";
 
     for (const feature of features) {
       const label = document.createElement("label");
-      label.className = "feature";
+      label.className = "row";
 
+      const text = document.createElement("span");
+      text.className = "text";
+      const title = document.createElement("strong");
+      title.textContent = feature.label;
+      const description = document.createElement("small");
+      description.textContent = feature.description;
+      text.append(title, description);
+
+      const toggle = document.createElement("span");
+      toggle.className = "switch";
       const input = document.createElement("input");
       input.type = "checkbox";
       input.dataset.feature = feature.id;
       input.checked = current[feature.id] !== false;
+      input.setAttribute("aria-label", feature.label);
       input.addEventListener("change", () => {
         current[feature.id] = input.checked;
         if (input.checked && (feature.id === "appleTheme" || feature.id === "draculaTheme")) {
@@ -35,20 +48,16 @@ function render(current) {
         const snapshot = { ...current };
         writeQueue = writeQueue.then(() => chrome.storage.sync.set({ [STORAGE_KEY]: snapshot }));
       });
+      const track = document.createElement("span");
+      track.className = "track";
+      toggle.append(input, track);
 
-      const text = document.createElement("span");
-      text.className = "text";
-
-      const title = document.createElement("strong");
-      title.textContent = feature.label;
-
-      const description = document.createElement("small");
-      description.textContent = feature.description;
-
-      text.append(title, description);
-      label.append(input, text);
-      form.append(label);
+      label.append(text, toggle);
+      card.append(label);
     }
+
+    section.append(heading, card);
+    form.append(section);
   }
 }
 
