@@ -961,7 +961,7 @@ const APPLE_EDITOR_CSS = `
   a { color: #007a94; text-decoration: none; }
   table { border-collapse: separate; border: 1px solid rgba(98, 114, 164, 0.4); border-radius: 12px; }
   th { color: #5c6288; background: #d8dae4; }
-  td { background: #e6e7ee; }
+  td { background: #f4f5f8; }
   td, th { border: 0; border-bottom: 1px solid rgba(98, 114, 164, 0.28); }
 `;
 
@@ -976,7 +976,8 @@ const DRACULA_EDITOR_CSS = `
   h1, h2, h3, h4 { color: #f8f8f2; font-weight: 650; }
   a { color: #8be9fd; text-decoration: none; }
   table { border-collapse: separate; border: 1px solid #6272a4; border-radius: 12px; }
-  th { color: #6272a4; }
+  th { color: #d4d7ee; background: #21222c; }
+  td { background: #353846; }
   td, th { border: 0; border-bottom: 1px solid #44475a; }
 `;
 

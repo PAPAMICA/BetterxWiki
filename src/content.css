@@ -333,7 +333,7 @@ html.bx-apple {
   --breadcrumb-bg: transparent;
   --breadcrumb-color: #3d425c;
   --breadcrumb-link-color: #007a94;
-  --table-bg: #e6e7ee;
+  --table-bg: #f4f5f8;
   --table-head-bg: #d8dae4;
   --table-bg-hover: #ffffff;
   --table-border-color: rgba(98, 114, 164, 0.4);
@@ -393,7 +393,7 @@ html.bx-dracula {
   --breadcrumb-bg: transparent;
   --breadcrumb-color: #e6e8f5;
   --breadcrumb-link-color: #8be9fd;
-  --table-bg: #282a36;
+  --table-bg: #353846;
   --table-head-bg: #21222c;
   --table-bg-hover: #44475a;
   --table-border-color: #6272a4;
@@ -580,11 +580,51 @@ html.bx-themed #rightPanels .panel {
 
 html.bx-themed .bottombuttons,
 html.bx-themed .sticky-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
   background: var(--card-bg) !important;
   color: var(--text-color) !important;
   border: 0 !important;
   border-top: 1px solid var(--xwiki-border-color) !important;
   box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.bx-themed .bottombuttons > .btn,
+html.bx-themed .bottombuttons > .button,
+html.bx-themed .bottombuttons > .buttonwrapper,
+html.bx-themed .bottombuttons > input,
+html.bx-themed .sticky-buttons > .btn,
+html.bx-themed .sticky-buttons > .button,
+html.bx-themed .sticky-buttons > .buttonwrapper,
+html.bx-themed .sticky-buttons > input {
+  margin: 0 !important;
+}
+
+html.bx-themed #contentmenu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+html.bx-themed #contentmenu > li {
+  margin: 0 !important;
+  float: none !important;
+}
+
+html.bx-themed .modal-footer,
+html.bx-themed .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+html.bx-themed .btn-group {
+  display: inline-flex;
+  gap: 0;
 }
 
 html.bx-themed #rightPanelsToggle {
@@ -1185,65 +1225,60 @@ html.bx-themed .cke,
 html.bx-themed .cke_chrome {
   border: 1px solid var(--xwiki-border-color) !important;
   border-radius: 14px !important;
-  overflow: visible;
+  overflow: hidden;
   background: var(--card-bg) !important;
   box-shadow: none !important;
 }
 
 html.bx-themed .cke_contents {
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
 }
 
 html.bx-themed .cke_inner,
 html.bx-themed .cke_bottom,
 html.bx-themed .cke_toolbox {
-  background: transparent !important;
+  background: var(--card-bg) !important;
   background-image: none !important;
   border: 0 !important;
   box-shadow: none !important;
 }
 
 html.bx-themed .cke_top {
-  position: fixed !important;
-  top: calc(var(--navbar-height, 52px) + 10px);
-  right: 10px;
-  bottom: 12px;
-  width: 52px;
-  z-index: 9990;
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  z-index: auto;
   margin: 0 !important;
-  padding: 8px 4px !important;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border: 1px solid var(--xwiki-border-color) !important;
-  border-radius: 16px !important;
+  padding: 8px 10px 2px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 0 !important;
   background: var(--card-bg) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
-  scrollbar-width: thin;
-}
-
-html.bx-themed:has(.cke_top) #contentcontainer {
-  padding-right: 72px;
-}
-
-html.bx-themed .cke.bx-fullscreen .cke_contents {
-  width: calc(100% - 68px) !important;
+  box-shadow: none !important;
 }
 
 html.bx-themed .cke_toolbox {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  width: 44px;
+  display: block !important;
+  width: auto;
 }
 
-html.bx-themed .cke_toolbar,
+html.bx-themed .cke_toolbar {
+  float: left !important;
+  display: block !important;
+  width: auto !important;
+}
+
 html.bx-themed .cke_toolbox .bx-cke-tools {
-  float: none !important;
-  display: flex !important;
-  flex-direction: column;
+  float: left !important;
+  display: inline-flex !important;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
+  width: auto !important;
 }
 
 html.bx-themed .cke_toolbar_start,
@@ -1262,11 +1297,13 @@ html.bx-apple .cke_contents { background: #ffffff !important; }
 html.bx-dracula .cke_contents { background: #282a36 !important; }
 
 html.bx-themed .cke_toolgroup {
-  float: none !important;
-  display: flex !important;
-  flex-direction: column;
+  float: left !important;
+  display: inline-flex !important;
+  flex-direction: row;
   align-items: center;
-  margin: 0 0 6px !important;
+  gap: 4px;
+  width: auto;
+  margin: 0 8px 6px 0 !important;
   padding: 2px !important;
   border: 0 !important;
   border-radius: 10px !important;
@@ -1279,11 +1316,12 @@ html.bx-themed a.cke_button,
 html.bx-themed a.cke_button_off,
 html.bx-themed a.cke_button_disabled {
   float: none !important;
-  display: flex !important;
+  position: relative;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 32px;
+  width: 32px;
+  height: 28px;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 8px !important;
@@ -1336,19 +1374,25 @@ html.bx-themed .cke_combo_label {
   font-family: var(--font-family-base) !important;
 }
 
+html.bx-apple a.cke_button_on .cke_button_icon {
+  filter: brightness(0) invert(1);
+}
+
 html.bx-themed .cke_combo {
-  float: none !important;
-  display: block !important;
+  float: left !important;
+  display: inline-block !important;
+  width: auto !important;
 }
 
 html.bx-themed .cke_combo_button {
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center;
-  justify-content: center;
-  width: 36px !important;
-  height: 32px !important;
-  margin: 0 0 6px !important;
-  padding: 0 !important;
+  justify-content: flex-start;
+  gap: 4px;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 8px 6px 0 !important;
+  padding: 2px 8px !important;
   border: 0 !important;
   border-radius: 10px !important;
   background: var(--search-fill) !important;
@@ -1357,23 +1401,37 @@ html.bx-themed .cke_combo_button {
 }
 
 html.bx-themed .cke_combo_text {
-  display: none !important;
+  display: inline-block !important;
+  float: none !important;
+  width: auto !important;
+  max-width: 160px;
+  flex: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 4px !important;
+  font-size: 13px !important;
+  font-weight: 600;
+  line-height: 26px !important;
+  text-align: left;
 }
 
 html.bx-themed .cke_combo_open {
   float: none !important;
+  position: static !important;
   margin: 0 !important;
 }
 
 html.bx-themed .cke_toolbar_separator {
   float: none !important;
-  display: block !important;
+  display: inline-block !important;
+  align-self: center;
   background: var(--xwiki-border-color) !important;
   border: 0 !important;
   box-shadow: none !important;
-  width: 18px !important;
-  height: 1px !important;
-  margin: 3px 0 !important;
+  width: 1px !important;
+  height: 16px !important;
+  margin: 0 4px !important;
 }
 
 html.bx-themed .cke_path a,
@@ -1423,6 +1481,165 @@ html.bx-themed #menuview .navbar-form .btn {
   color: var(--navbar-default-link-color) !important;
   border: 0 !important;
   box-shadow: none !important;
+}
+
+html.bx-themed div.suggestItems.searchSuggest {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--xwiki-border-color) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22) !important;
+  padding: 6px !important;
+  max-height: min(70vh, 560px);
+  overflow: auto !important;
+}
+
+html.bx-themed div.suggestItems .hide-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2px 4px 0;
+}
+
+html.bx-themed div.suggestItems button {
+  appearance: none;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+html.bx-themed div.suggestItems .hide-button {
+  width: auto !important;
+  color: var(--text-muted) !important;
+  font-style: normal !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  background: transparent !important;
+  border-radius: 8px;
+  padding: 4px 8px !important;
+}
+
+html.bx-themed div.suggestItems .hide-button:hover,
+html.bx-themed div.suggestItems .hide-button:focus {
+  background: var(--sidebar-hover) !important;
+  color: var(--text-color) !important;
+}
+
+html.bx-themed div.suggestItems ul.xlist li.showAllResults {
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 4px;
+}
+
+html.bx-themed div.suggestItems ul.xlist li.showAllResults button.xitemcontainer,
+html.bx-themed div.suggestItems ul.xlist li.showAllResults a.xitemcontainer {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+  background: var(--search-fill) !important;
+  color: var(--link-color) !important;
+  font-weight: 650;
+  text-align: left;
+}
+
+html.bx-themed div.suggestItems ul.xlist li.showAllResults button.xitemcontainer:hover,
+html.bx-themed div.suggestItems ul.xlist li.showAllResults a.xitemcontainer:hover {
+  background: var(--sidebar-hover) !important;
+}
+
+html.bx-themed div.suggestItems div.sourceName {
+  background-color: transparent !important;
+  border: 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 10px 2px !important;
+}
+
+html.bx-themed .horizontalLayout div.resultContainer ul.suggestList,
+html.bx-themed div.suggestItems ul.suggestList {
+  background: transparent !important;
+  color: var(--text-color) !important;
+}
+
+html.bx-themed div.suggestItems ul,
+html.bx-themed div.suggestItems li {
+  list-style: none !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+html.bx-themed div.suggestItems ul.xlist.suggestList {
+  width: 100%;
+}
+
+html.bx-themed div.suggestItems ul.xlist.suggestList > li.xitem,
+html.bx-themed div.suggestItems ul.xlist li.showAllResults {
+  float: none !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 2px !important;
+  border-radius: 10px;
+  background: transparent !important;
+}
+
+html.bx-themed div.suggestItems ul.xlist.suggestList > li.xitem > a.xitemcontainer,
+html.bx-themed div.suggestItems ul.xlist.suggestList > li.xitem > button.xitemcontainer {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 6px 10px !important;
+  border-radius: 10px;
+}
+
+html.bx-themed div.suggestItems li.xitem.xhighlight > a,
+html.bx-themed div.suggestItems li.xitem.xhighlight > button,
+html.bx-themed div.suggestItems li.xitem:hover > a,
+html.bx-themed div.suggestItems li.xitem:hover > button,
+html.bx-themed div.suggestItems ul.suggestList .xhighlight > a,
+html.bx-themed div.suggestItems ul.suggestList .xhighlight > button {
+  background: var(--sidebar-hover) !important;
+}
+
+html.bx-themed div.suggestItems .value,
+html.bx-themed div.suggestItems a.suggestItem,
+html.bx-themed div.suggestItems a.xitemcontainer,
+html.bx-themed div.suggestItems button.xitemcontainer {
+  color: var(--text-color) !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+}
+
+html.bx-themed div.suggestItems .value {
+  font-weight: 650;
+  line-height: 1.35 !important;
+}
+
+html.bx-themed div.suggestItems em {
+  font-style: normal !important;
+  font-weight: 750 !important;
+  color: var(--brand-primary) !important;
+  margin-right: 0 !important;
+  background: transparent !important;
+}
+
+html.bx-themed div.suggestItems div.info,
+html.bx-themed div.suggestItems div.info span.legend,
+html.bx-themed div.suggestItems span.info span.hint {
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 500;
+  line-height: 1.4 !important;
+  white-space: normal;
+}
+
+html.bx-themed div.suggestItems div.info a {
+  display: inline !important;
+  width: auto !important;
+  color: var(--link-color) !important;
 }
 
 html.bx-themed #xwikicontent table tr td,
@@ -2053,15 +2270,20 @@ html.bx-themed ::selection {
 
 html.bx-themed .cke_toolbox #betterxwiki-toolbar,
 html.bx-themed .cke_toolbox #betterxwiki-editorbar {
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
-  margin: 0 0 6px !important;
+  width: auto;
+  margin: 0 6px 6px 0 !important;
 }
 
 html.bx-themed .cke_toolbox .bx-group {
-  flex-direction: column;
-  margin: 0 0 6px;
+  display: inline-flex !important;
+  flex-direction: row;
+  gap: 4px;
+  width: auto;
+  margin: 0 6px 6px 0;
+  padding: 2px;
+  border-radius: 10px;
   background: var(--search-fill) !important;
 }
 
