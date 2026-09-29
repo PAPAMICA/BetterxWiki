@@ -23,7 +23,7 @@ Les couleurs sont enregistrées comme couleur de fond, donc elles restent après
 
 ## Apparence
 
-Le thème épuré rapproche l’interface d’une fenêtre macOS : barre d’outils claire, recherche sans bouton bleu, liste latérale, titre large et boutons du système. Le logo clair est assombri pour rester lisible. Il se désactive comme les autres fonctions.
+Le thème épuré reprend les variables du thème Flamingo (couleurs, polices, boutons, tableaux, barre) et les aligne sur une fenêtre macOS. Le logo blanc reste sur un fond sombre. Il se désactive comme les autres fonctions.
 
 ## Lecture
 

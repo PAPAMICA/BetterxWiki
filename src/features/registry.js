@@ -12,7 +12,7 @@ export const FEATURES = [
     id: "appleTheme",
     group: "look",
     label: "Thème épuré",
-    description: "Chrome façon macOS : barre claire, liste latérale, recherche et boutons du système.",
+    description: "Recolorie le thème Flamingo comme une fenêtre macOS : barre, liens, boutons et tableaux.",
     default: true,
   },
   {
