@@ -235,6 +235,7 @@ function attachEditor(editor) {
   });
   editor.on("destroy", () => {
     editor.container?.$.classList.remove("bx-fullscreen");
+    parkEditorTools();
     if (activeEditor === editor) {
       activeEditor = null;
       hideToolbar();
@@ -311,11 +312,7 @@ function updateToolbar() {
     hideToolbar();
     return;
   }
-  const wasHidden = toolbar.hidden;
   toolbar.hidden = false;
-  if (wasHidden) toolbar.style.visibility = "hidden";
-  placeFloating(toolbar, rect, "above");
-  if (wasHidden) toolbar.style.visibility = "visible";
   syncCommands(editor);
   syncActions(cells);
   syncSwatches(cells);
@@ -565,16 +562,34 @@ function cleanTableHtml(html) {
 function updateEditorChrome() {
   const editor = activeEditor;
   const alive = settingsReady && editor && editor.status !== "destroyed" && editor.mode === "wysiwyg";
-  const focused = alive && (editor.focusManager?.hasFocus || editor.container?.$.classList.contains("bx-fullscreen"));
-  const showBar = focused && ["alertBlocks", "macroShortcuts", "editorFullscreen"].some(enabled);
+  if (alive) mountEditorTools(editor);
+  const showBar = alive && ["alertBlocks", "macroShortcuts", "editorFullscreen"].some(enabled);
   editorBar.hidden = !showBar;
   if (showBar) {
-    const rect = viewportRect(editor, editor.container);
-    placeInsideCorner(editorBar, rect);
     editorBar.querySelector('[data-action="fullscreen"]')?.setAttribute("aria-pressed", editor.container.$.classList.contains("bx-fullscreen") ? "true" : "false");
   }
   updateOutline(alive ? editor : null);
   syncFullscreenReserve();
+}
+
+function mountEditorTools(editor) {
+  const toolbox = editor.container?.$.querySelector(".cke_toolbox");
+  if (!toolbox) return;
+  let host = toolbox.querySelector(".bx-cke-tools");
+  if (!host) {
+    host = document.createElement("span");
+    host.className = "cke_toolbar bx-cke-tools";
+    toolbox.append(host);
+  }
+  if (!host.contains(editorBar)) host.append(editorBar);
+  if (!host.contains(toolbar)) host.append(toolbar);
+}
+
+function parkEditorTools() {
+  if (editorBar.parentElement && editorBar.parentElement !== document.body) document.body.append(editorBar);
+  if (toolbar.parentElement && toolbar.parentElement !== document.body) document.body.append(toolbar);
+  editorBar.hidden = true;
+  toolbar.hidden = true;
 }
 
 function hideEditorChrome() {
@@ -1200,30 +1215,6 @@ function viewportRect(editor, element) {
     width: rect.width,
     height: rect.height,
   };
-}
-
-function placeFloating(panel, rect, preference) {
-  const margin = 8;
-  const height = panel.offsetHeight;
-  const width = panel.offsetWidth;
-  let top = preference === "above" ? rect.top - height - margin : rect.bottom + margin;
-  if (top < margin) top = rect.bottom + margin;
-  if (top + height > window.innerHeight - margin) top = Math.max(margin, window.innerHeight - height - margin);
-  const left = Math.max(margin, Math.min(rect.left, window.innerWidth - width - margin));
-  panel.style.top = `${Math.round(top)}px`;
-  panel.style.left = `${Math.round(left)}px`;
-}
-
-function placeInsideCorner(panel, rect) {
-  const margin = 8;
-  const width = panel.offsetWidth;
-  const height = panel.offsetHeight;
-  let top = rect.top - height - margin;
-  if (top < margin) top = rect.bottom + margin;
-  if (top + height > window.innerHeight - margin) top = Math.max(margin, rect.top + margin);
-  const left = Math.max(margin, Math.min(rect.right - width, window.innerWidth - width - margin));
-  panel.style.top = `${Math.round(top)}px`;
-  panel.style.left = `${Math.round(left)}px`;
 }
 
 function placeBeside(panel, rect) {

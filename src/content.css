@@ -17,9 +17,63 @@
   user-select: none;
 }
 
-#betterxwiki-toolbar {
-  flex-wrap: wrap;
-  max-width: min(560px, calc(100vw - 16px));
+.cke_toolbox .bx-cke-tools {
+  float: none;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+}
+
+.cke_toolbox #betterxwiki-toolbar,
+.cke_toolbox #betterxwiki-editorbar {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  display: inline-flex !important;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  max-width: none;
+  margin: 0 6px 5px 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.cke_toolbox #betterxwiki-toolbar[hidden],
+.cke_toolbox #betterxwiki-editorbar[hidden] {
+  display: none !important;
+}
+
+.cke_toolbox .bx-cke-tools:not(:has(#betterxwiki-editorbar:not([hidden]))):not(:has(#betterxwiki-toolbar:not([hidden]))) {
+  display: none;
+}
+
+.cke_toolbox .bx-group {
+  flex-direction: row;
+  margin: 0 6px 0 0;
+  padding: 2px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.cke_toolbox .bx-group.is-separated {
+  margin-left: 0;
+  padding-left: 2px;
+  border-left: 0;
+  margin-top: 0;
+  padding-top: 2px;
+  border-top: 0;
+}
+
+.cke_toolbox #betterxwiki-toolbar button,
+.cke_toolbox #betterxwiki-editorbar button {
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  float: none !important;
 }
 
 #betterxwiki-toolbar[hidden],
@@ -41,13 +95,6 @@
 #betterxwiki-toolbar .bx-group[hidden],
 #betterxwiki-editorbar .bx-group[hidden] {
   display: none !important;
-}
-
-#betterxwiki-toolbar .bx-group.is-separated,
-#betterxwiki-editorbar .bx-group.is-separated {
-  margin-left: 4px;
-  padding-left: 4px;
-  border-left: 1px solid #e1e6ed;
 }
 
 #betterxwiki-toolbar button,
@@ -631,8 +678,7 @@ html.bx-themed #rightPanels .xwikipanelcontents {
 }
 
 html.bx-themed #leftPanels .PanelsSearch {
-  padding-top: 6px;
-  padding-bottom: 6px;
+  display: none !important;
 }
 
 html.bx-themed #leftPanels .jstree-container-ul,
@@ -1888,6 +1934,10 @@ html.bx-themed #footerglobal a {
 html.bx-themed ::selection {
   background: var(--component-active-bg);
   color: var(--component-active-color);
+}
+
+html.bx-themed .cke_toolbox .bx-group {
+  background: var(--search-fill) !important;
 }
 
 html.bx-themed #betterxwiki-toolbar,
