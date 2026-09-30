@@ -5,10 +5,10 @@
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Better xWiki</title>
   <comment/>
@@ -19,7 +19,7 @@
   <attachment>
     <filename>betterxwiki.js</filename>
     <filesize>51654</filesize>
-    <author>xwiki:XWiki.Admin</author>
+    <author>xwiki:XWiki.superadmin</author>
     <version>1.1</version>
     <comment/>
     <content>Ly8gUsOpZ2xhZ2VzIGx1cyBkYW5zIHdpbmRvdy5CRVRURVJYV0lLSV9TRVRUSU5HUywgcG9zw6kg
@@ -1018,8 +1018,9 @@ window.BETTERXWIKI_SETTINGS = $jsontool.serialize($bx.settings);
 #else
 #set ($bxObj = false)
 #if ($xcontext.userReference)
-  #set ($bxUser = $xwiki.getDocument($xcontext.userReference))
-  #set ($bxObj = $bxUser.getObject('BetterxWiki.UserSettingsClass'))
+  #set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
+  #set ($bxSettingsDoc = $xwiki.getDocument($bxSettingsRef))
+  #set ($bxObj = $bxSettingsDoc.getObject('BetterxWiki.UserSettingsClass'))
 #end
 window.BETTERXWIKI_SETTINGS = {
 "sideToolbar": #if ($bxObj && "$!bxObj.getValue('sideToolbar')" == '0')false#{else}true#end,
@@ -1687,5 +1688,14 @@ html.bx-side-toolbar .cke_panel.bx-float-panel {
     <property>
       <cache>long</cache>
     </property>
+  </object>  <object>
+    <name>BetterxWiki.Client</name>
+    <number>0</number>
+    <className>XWiki.RequiredRightClass</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a11</guid>
+    <property>
+      <level>programming</level>
+    </property>
   </object>
+
 </xwikidoc>

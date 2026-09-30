@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import base64
+import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
@@ -161,18 +162,18 @@ html.bx-side-toolbar .cke_panel.bx-float-panel {
     return css
 
 
-def page(name, title, hidden, content, extra=""):
+def page(name, title, hidden, content, extra="", web="BetterxWiki", parent="BetterxWiki.WebHome"):
     return f"""<?xml version="1.1" encoding="UTF-8"?>
 <xwikidoc version="1.1">
-  <web>BetterxWiki</web>
+  <web>{web}</web>
   <name>{name}</name>
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
-  <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creator>xwiki:XWiki.superadmin</creator>
+  <parent>{parent}</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>{title}</title>
   <comment/>
@@ -183,6 +184,48 @@ def page(name, title, hidden, content, extra=""):
 {extra}
 </xwikidoc>
 """
+
+
+def required_right(document_name, guid):
+    return f"""  <object>
+    <name>{document_name}</name>
+    <number>0</number>
+    <className>XWiki.RequiredRightClass</className>
+    <guid>{guid}</guid>
+    <property>
+      <level>programming</level>
+    </property>
+  </object>
+"""
+
+
+def rights_object(document_name, number, guid, groups, users, levels):
+    return f"""  <object>
+    <name>{document_name}</name>
+    <number>{number}</number>
+    <className>XWiki.XWikiRights</className>
+    <guid>{guid}</guid>
+    <property>
+      <allow>1</allow>
+    </property>
+    <property>
+      <groups>{groups}</groups>
+    </property>
+    <property>
+      <levels>{levels}</levels>
+    </property>
+    <property>
+      <users>{users}</users>
+    </property>
+  </object>
+"""
+
+
+def space_rights(document_name, view_guid, edit_guid):
+    return (
+        rights_object(document_name, 0, view_guid, "XWiki.XWikiAllGroup", "", "view")
+        + rights_object(document_name, 1, edit_guid, "XWiki.XWikiAdminGroup", "", "edit,delete")
+    )
 
 
 def boolean_property(name, label, number):
@@ -209,10 +252,10 @@ def class_page():
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Réglages utilisateur Better xWiki</title>
   <comment/>
@@ -261,23 +304,36 @@ def settings_page():
     body = "\n".join(groups)
     content = f"""{{{{velocity}}}}
 #if ("$!xcontext.user" == '' || "$!xcontext.user" == 'XWiki.XWikiGuest')
-{{{{info}}}}Connectez-vous pour régler Better xWiki.{{{{/info}}}}
+{{{{info}}}}Connectez-vous pour régler Better xWiki. Chaque compte a ses propres options.{{{{/info}}}}
 #stop
 #end
-#set ($bxUser = $xwiki.getDocument($xcontext.userReference))
-#if (!$bxUser.getObject('BetterxWiki.UserSettingsClass'))
-  #set ($bxCreated = $bxUser.newObject('BetterxWiki.UserSettingsClass'))
-  $bxUser.save('Réglages Better xWiki', true)
-  #set ($bxUser = $xwiki.getDocument($xcontext.userReference))
+#set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
+#set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+#set ($bxChanged = false)
+#if ($bxDoc.isNew())
+  #set ($bxRights = $bxDoc.newObject('XWiki.XWikiRights'))
+  #set ($discard = $bxRights.set('users', "$!xcontext.user"))
+  #set ($discard = $bxRights.set('levels', 'view,edit'))
+  #set ($discard = $bxRights.set('allow', 1))
+  $bxDoc.setHidden(true)
+  #set ($bxChanged = true)
 #end
-#set ($bxObject = $bxUser.getObject('BetterxWiki.UserSettingsClass'))
+#if (!$bxDoc.getObject('BetterxWiki.UserSettingsClass'))
+  #set ($discard = $bxDoc.newObject('BetterxWiki.UserSettingsClass'))
+  #set ($bxChanged = true)
+#end
+#if ($bxChanged)
+  $bxDoc.save('Réglages Better xWiki', true)
+  #set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+#end
+#set ($bxObject = $bxDoc.getObject('BetterxWiki.UserSettingsClass'))
 #set ($bxNumber = 0)
 #if ($bxObject)
   #set ($bxNumber = $bxObject.number)
 #end
 {{{{html clean="false"}}}}
-<p>Ces réglages sont enregistrés sur votre profil. Ils s’appliquent au prochain affichage d’une page.</p>
-<form action="$bxUser.getURL('save')" method="post" class="xform bx-settings">
+<p>Ces options ne concernent que votre compte. Elles s’appliquent au prochain affichage d’une page.</p>
+<form action="$bxDoc.getURL('save')" method="post" class="xform bx-settings">
   <div>
     <input type="hidden" name="form_token" value="$!services.csrf.token" />
     <input type="hidden" name="xredirect" value="$doc.getURL()" />
@@ -294,7 +350,7 @@ def settings_page():
 {{{{/html}}}}
 {{{{/velocity}}}}
 """
-    return page("Settings", "Better xWiki", False, content)
+    return page("Settings", "Better xWiki", False, content, required_right("BetterxWiki.Settings", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a10"))
 
 
 def drawer_page():
@@ -386,7 +442,8 @@ def drawer_page():
       <name>org.xwiki.betterxwiki.drawer</name>
     </property>
     <property>
-      <parameters>order=51000</parameters>
+      <parameters>order=51000
+category=local</parameters>
     </property>
     <property>
       <scope>wiki</scope>
@@ -399,7 +456,13 @@ def drawer_page():
         .replace(">", "&gt;")
     )
     extra = extra.replace(f"<content>{content}</content>", f"<content>{escaped}</content>")
-    return page("Drawer", "Better xWiki", True, "", extra)
+    return page(
+        "Drawer",
+        "Better xWiki",
+        True,
+        "",
+        extra + required_right("BetterxWiki.Drawer", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a12"),
+    )
 
 
 def client_page(script: str, css: str):
@@ -414,8 +477,9 @@ window.BETTERXWIKI_SETTINGS = $jsontool.serialize($bx.settings);
 #else
 #set ($bxObj = false)
 #if ($xcontext.userReference)
-  #set ($bxUser = $xwiki.getDocument($xcontext.userReference))
-  #set ($bxObj = $bxUser.getObject('BetterxWiki.UserSettingsClass'))
+  #set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
+  #set ($bxSettingsDoc = $xwiki.getDocument($bxSettingsRef))
+  #set ($bxObj = $bxSettingsDoc.getObject('BetterxWiki.UserSettingsClass'))
 #end
 window.BETTERXWIKI_SETTINGS = {{
 {rows}
@@ -433,7 +497,7 @@ window.BETTERXWIKI_SETTINGS = {{
     extra = f"""  <attachment>
     <filename>betterxwiki.js</filename>
     <filesize>{len(script.encode("utf-8"))}</filesize>
-    <author>xwiki:XWiki.Admin</author>
+    <author>xwiki:XWiki.superadmin</author>
     <version>1.1</version>
     <comment/>
     <content>{wrapped}</content>
@@ -626,13 +690,19 @@ window.BETTERXWIKI_SETTINGS = {{
       <cache>long</cache>
     </property>
   </object>"""
-    return page("Client", "Better xWiki", True, "", extra)
+    return page(
+        "Client",
+        "Better xWiki",
+        True,
+        "",
+        extra + required_right("BetterxWiki.Client", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a11"),
+    )
 
 
 def webhome():
     content = """Better xWiki ajoute des outils d’édition et de lecture, sans changer l’habillage du wiki.
 
-Les réglages de chaque utilisateur sont dans le menu de droite, sous **User Index**.
+Chaque utilisateur ouvre **Better xWiki** dans le menu de droite, sous **User Index**, et active ou désactive les options pour son propre compte.
 
 {{toc/}}
 
@@ -661,7 +731,30 @@ En mode WYSIWYG, la barre CKEditor reste celle du wiki.
 * recherche dans la page avec Ctrl+Maj+F ou Cmd+Maj+F
 * retour à l’endroit lu après une sauvegarde
 """
-    return page("WebHome", "Better xWiki", False, content)
+    return page(
+        "WebHome",
+        "Better xWiki",
+        False,
+        content,
+        space_rights("BetterxWiki.WebHome", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a20", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a21"),
+    )
+
+
+def user_settings_home():
+    content = "Chaque utilisateur a ici sa propre page de réglages. Le menu de droite y mène."
+    return page(
+        "WebHome",
+        "Réglages des utilisateurs",
+        True,
+        content,
+        space_rights(
+            "BetterxWiki.UserSettings.WebHome",
+            "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a22",
+            "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a23",
+        ),
+        web="BetterxWiki.UserSettings",
+        parent="BetterxWiki.WebHome",
+    )
 
 
 def main():
@@ -672,6 +765,7 @@ def main():
     client_dir.mkdir(parents=True, exist_ok=True)
     (client_dir / "betterxwiki.js").write_text(script, encoding="utf-8")
     (OUT / "WebHome.xml").write_text(webhome(), encoding="utf-8")
+    (OUT / "UserSettingsWebHome.xml").write_text(user_settings_home(), encoding="utf-8")
     (OUT / "UserSettingsClass.xml").write_text(class_page(), encoding="utf-8")
     (OUT / "Settings.xml").write_text(settings_page(), encoding="utf-8")
     (OUT / "Drawer.xml").write_text(drawer_page(), encoding="utf-8")
@@ -682,8 +776,15 @@ def main():
 
 
 def write_xar():
-    pages = sorted(path.stem for path in OUT.glob("*.xml"))
-    files = "\n".join(f'    <file defaultAction="0" language="">BetterxWiki.{name}</file>' for name in pages)
+    documents = []
+    for path in sorted(OUT.glob("*.xml")):
+        root = ET.parse(path).getroot()
+        web = root.findtext("web")
+        name = root.findtext("name")
+        documents.append((path, web, name))
+    files = "\n".join(
+        f'    <file defaultAction="0" language="">{web}.{name}</file>' for _path, web, name in documents
+    )
     package = f"""<?xml version="1.0" encoding="UTF-8"?>
 <package>
   <infos>
@@ -703,8 +804,8 @@ def write_xar():
     xar_path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(xar_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         archive.writestr("package.xml", package)
-        for path in sorted(OUT.glob("*.xml")):
-            archive.write(path, f"BetterxWiki/{path.name}")
+        for path, web, name in documents:
+            archive.write(path, f"{web.replace('.', '/')}/{name}.xml")
     return xar_path
 
 

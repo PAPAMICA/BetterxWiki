@@ -5,10 +5,10 @@
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Réglages utilisateur Better xWiki</title>
   <comment/>

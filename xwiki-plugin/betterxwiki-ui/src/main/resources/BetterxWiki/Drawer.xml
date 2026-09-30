@@ -5,10 +5,10 @@
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Better xWiki</title>
   <comment/>
@@ -103,10 +103,20 @@
       <name>org.xwiki.betterxwiki.drawer</name>
     </property>
     <property>
-      <parameters>order=51000</parameters>
+      <parameters>order=51000
+category=local</parameters>
     </property>
     <property>
       <scope>wiki</scope>
     </property>
+  </object>  <object>
+    <name>BetterxWiki.Drawer</name>
+    <number>0</number>
+    <className>XWiki.RequiredRightClass</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a12</guid>
+    <property>
+      <level>programming</level>
+    </property>
   </object>
+
 </xwikidoc>

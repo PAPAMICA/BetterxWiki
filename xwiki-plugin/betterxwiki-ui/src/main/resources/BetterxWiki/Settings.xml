@@ -5,10 +5,10 @@
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Better xWiki</title>
   <comment/>
@@ -17,23 +17,36 @@
   <hidden>false</hidden>
   <content><![CDATA[{{velocity}}
 #if ("$!xcontext.user" == '' || "$!xcontext.user" == 'XWiki.XWikiGuest')
-{{info}}Connectez-vous pour régler Better xWiki.{{/info}}
+{{info}}Connectez-vous pour régler Better xWiki. Chaque compte a ses propres options.{{/info}}
 #stop
 #end
-#set ($bxUser = $xwiki.getDocument($xcontext.userReference))
-#if (!$bxUser.getObject('BetterxWiki.UserSettingsClass'))
-  #set ($bxCreated = $bxUser.newObject('BetterxWiki.UserSettingsClass'))
-  $bxUser.save('Réglages Better xWiki', true)
-  #set ($bxUser = $xwiki.getDocument($xcontext.userReference))
+#set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
+#set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+#set ($bxChanged = false)
+#if ($bxDoc.isNew())
+  #set ($bxRights = $bxDoc.newObject('XWiki.XWikiRights'))
+  #set ($discard = $bxRights.set('users', "$!xcontext.user"))
+  #set ($discard = $bxRights.set('levels', 'view,edit'))
+  #set ($discard = $bxRights.set('allow', 1))
+  $bxDoc.setHidden(true)
+  #set ($bxChanged = true)
 #end
-#set ($bxObject = $bxUser.getObject('BetterxWiki.UserSettingsClass'))
+#if (!$bxDoc.getObject('BetterxWiki.UserSettingsClass'))
+  #set ($discard = $bxDoc.newObject('BetterxWiki.UserSettingsClass'))
+  #set ($bxChanged = true)
+#end
+#if ($bxChanged)
+  $bxDoc.save('Réglages Better xWiki', true)
+  #set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+#end
+#set ($bxObject = $bxDoc.getObject('BetterxWiki.UserSettingsClass'))
 #set ($bxNumber = 0)
 #if ($bxObject)
   #set ($bxNumber = $bxObject.number)
 #end
 {{html clean="false"}}
-<p>Ces réglages sont enregistrés sur votre profil. Ils s’appliquent au prochain affichage d’une page.</p>
-<form action="$bxUser.getURL('save')" method="post" class="xform bx-settings">
+<p>Ces options ne concernent que votre compte. Elles s’appliquent au prochain affichage d’une page.</p>
+<form action="$bxDoc.getURL('save')" method="post" class="xform bx-settings">
   <div>
     <input type="hidden" name="form_token" value="$!services.csrf.token" />
     <input type="hidden" name="xredirect" value="$doc.getURL()" />
@@ -110,5 +123,14 @@
 {{/html}}
 {{/velocity}}
 ]]></content>
+  <object>
+    <name>BetterxWiki.Settings</name>
+    <number>0</number>
+    <className>XWiki.RequiredRightClass</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a10</guid>
+    <property>
+      <level>programming</level>
+    </property>
+  </object>
 
 </xwikidoc>

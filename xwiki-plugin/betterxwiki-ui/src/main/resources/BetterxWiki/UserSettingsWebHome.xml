@@ -1,0 +1,56 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xwikidoc version="1.1">
+  <web>BetterxWiki.UserSettings</web>
+  <name>WebHome</name>
+  <language/>
+  <defaultLanguage>fr</defaultLanguage>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.superadmin</creator>
+  <parent>BetterxWiki.WebHome</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <version>1.1</version>
+  <title>Réglages des utilisateurs</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content><![CDATA[Chaque utilisateur a ici sa propre page de réglages. Le menu de droite y mène.]]></content>
+  <object>
+    <name>BetterxWiki.UserSettings.WebHome</name>
+    <number>0</number>
+    <className>XWiki.XWikiRights</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a22</guid>
+    <property>
+      <allow>1</allow>
+    </property>
+    <property>
+      <groups>XWiki.XWikiAllGroup</groups>
+    </property>
+    <property>
+      <levels>view</levels>
+    </property>
+    <property>
+      <users></users>
+    </property>
+  </object>
+  <object>
+    <name>BetterxWiki.UserSettings.WebHome</name>
+    <number>1</number>
+    <className>XWiki.XWikiRights</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a23</guid>
+    <property>
+      <allow>1</allow>
+    </property>
+    <property>
+      <groups>XWiki.XWikiAdminGroup</groups>
+    </property>
+    <property>
+      <levels>edit,delete</levels>
+    </property>
+    <property>
+      <users></users>
+    </property>
+  </object>
+
+</xwikidoc>

@@ -76,13 +76,18 @@ public class BetterxWikiPlugin extends XWikiDefaultPlugin {
             return null;
         }
         try {
-            XWikiDocument userDocument = context.getWiki().getDocument(userReference, context);
+            DocumentReference settingsReference = new DocumentReference(
+                context.getWikiId(),
+                List.of("BetterxWiki", "UserSettings"),
+                userReference.getName()
+            );
+            XWikiDocument settingsDocument = context.getWiki().getDocument(settingsReference, context);
             DocumentReference classReference = new DocumentReference(
-                userReference.getWikiReference().getName(),
+                context.getWikiId(),
                 "BetterxWiki",
                 "UserSettingsClass"
             );
-            return userDocument.getXObject(classReference);
+            return settingsDocument.getXObject(classReference);
         } catch (XWikiException exception) {
             LOGGER.warn("Impossible de lire les réglages Better xWiki de l’utilisateur courant.", exception);
             return null;

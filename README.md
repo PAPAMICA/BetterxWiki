@@ -38,11 +38,9 @@ Deux fichiers sont produits :
 1. Se connecter avec un compte administrateur.
 2. Ouvrir Administration, puis Contenu, puis Importer.
 3. Importer `betterxwiki-ui-1.0.0.xar`.
-4. Ouvrir le menu de droite : Better xWiki est sous User Index.
+4. Ouvrir le menu de droite : Better xWiki est sous User Index, pour chaque utilisateur connecté.
 
-La page de réglages est enregistrée par XWiki.Admin. Ce compte doit garder les droits de programmation, car le premier affichage crée l’objet de réglages sur le profil de l’utilisateur.
-
-Les changements s’appliquent au prochain affichage d’une page.
+Chaque compte active ou désactive ses propres options. Le premier affichage crée sa page de réglages. Les changements s’appliquent au prochain affichage d’une page.
 
 ### Enregistrer le plugin Java
 

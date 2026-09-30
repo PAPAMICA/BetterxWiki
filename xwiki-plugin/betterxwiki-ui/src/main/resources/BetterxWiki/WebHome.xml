@@ -5,10 +5,10 @@
   <language/>
   <defaultLanguage>fr</defaultLanguage>
   <translation>0</translation>
-  <creator>xwiki:XWiki.Admin</creator>
+  <creator>xwiki:XWiki.superadmin</creator>
   <parent>BetterxWiki.WebHome</parent>
-  <author>xwiki:XWiki.Admin</author>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
   <version>1.1</version>
   <title>Better xWiki</title>
   <comment/>
@@ -17,7 +17,7 @@
   <hidden>false</hidden>
   <content><![CDATA[Better xWiki ajoute des outils d’édition et de lecture, sans changer l’habillage du wiki.
 
-Les réglages de chaque utilisateur sont dans le menu de droite, sous **User Index**.
+Chaque utilisateur ouvre **Better xWiki** dans le menu de droite, sous **User Index**, et active ou désactive les options pour son propre compte.
 
 {{toc/}}
 
@@ -46,5 +46,41 @@ En mode WYSIWYG, la barre CKEditor reste celle du wiki.
 * recherche dans la page avec Ctrl+Maj+F ou Cmd+Maj+F
 * retour à l’endroit lu après une sauvegarde
 ]]></content>
+  <object>
+    <name>BetterxWiki.WebHome</name>
+    <number>0</number>
+    <className>XWiki.XWikiRights</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a20</guid>
+    <property>
+      <allow>1</allow>
+    </property>
+    <property>
+      <groups>XWiki.XWikiAllGroup</groups>
+    </property>
+    <property>
+      <levels>view</levels>
+    </property>
+    <property>
+      <users></users>
+    </property>
+  </object>
+  <object>
+    <name>BetterxWiki.WebHome</name>
+    <number>1</number>
+    <className>XWiki.XWikiRights</className>
+    <guid>8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a21</guid>
+    <property>
+      <allow>1</allow>
+    </property>
+    <property>
+      <groups>XWiki.XWikiAdminGroup</groups>
+    </property>
+    <property>
+      <levels>edit,delete</levels>
+    </property>
+    <property>
+      <users></users>
+    </property>
+  </object>
 
 </xwikidoc>
