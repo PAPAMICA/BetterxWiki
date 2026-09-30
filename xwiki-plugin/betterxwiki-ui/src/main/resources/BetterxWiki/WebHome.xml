@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xwikidoc version="1.1">
+  <web>BetterxWiki</web>
+  <name>WebHome</name>
+  <language/>
+  <defaultLanguage>fr</defaultLanguage>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <parent>BetterxWiki.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <version>1.1</version>
+  <title>Better xWiki</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content><![CDATA[Better xWiki ajoute des outils d’édition et de lecture, sans changer l’habillage du wiki.
+
+Les réglages de chaque utilisateur sont dans le menu de droite, sous **User Index**.
+
+{{toc/}}
+
+== Édition ==
+
+* barre d’outils en colonne à droite, en édition classique
+* blocs d’alerte
+* raccourcis de macros
+* collage d’un tableau Excel ou Sheets sans largeurs imposées
+* plein écran
+* sommaire des titres
+
+En mode WYSIWYG, la barre CKEditor reste celle du wiki.
+
+== Tableaux ==
+
+* insérer, supprimer, dupliquer ou déplacer une ligne ou une colonne
+* colorer les cellules, ou toute la ligne et toute la colonne
+* fusionner ou scinder
+* Alt+Maj+flèches pour insérer
+
+== Lecture ==
+
+* en-tête de tableau fixe
+* bouton Copier au survol d’un tableau
+* recherche dans la page avec Ctrl+Maj+F ou Cmd+Maj+F
+* retour à l’endroit lu après une sauvegarde
+]]></content>
+
+</xwikidoc>

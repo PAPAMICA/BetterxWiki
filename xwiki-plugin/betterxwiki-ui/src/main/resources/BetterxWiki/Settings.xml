@@ -1,0 +1,114 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xwikidoc version="1.1">
+  <web>BetterxWiki</web>
+  <name>Settings</name>
+  <language/>
+  <defaultLanguage>fr</defaultLanguage>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <parent>BetterxWiki.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <version>1.1</version>
+  <title>Better xWiki</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content><![CDATA[{{velocity}}
+#if ("$!xcontext.user" == '' || "$!xcontext.user" == 'XWiki.XWikiGuest')
+{{info}}Connectez-vous pour régler Better xWiki.{{/info}}
+#stop
+#end
+#set ($bxUser = $xwiki.getDocument($xcontext.userReference))
+#if (!$bxUser.getObject('BetterxWiki.UserSettingsClass'))
+  #set ($bxCreated = $bxUser.newObject('BetterxWiki.UserSettingsClass'))
+  $bxUser.save('Réglages Better xWiki', true)
+  #set ($bxUser = $xwiki.getDocument($xcontext.userReference))
+#end
+#set ($bxObject = $bxUser.getObject('BetterxWiki.UserSettingsClass'))
+#set ($bxNumber = 0)
+#if ($bxObject)
+  #set ($bxNumber = $bxObject.number)
+#end
+{{html clean="false"}}
+<p>Ces réglages sont enregistrés sur votre profil. Ils s’appliquent au prochain affichage d’une page.</p>
+<form action="$bxUser.getURL('save')" method="post" class="xform bx-settings">
+  <div>
+    <input type="hidden" name="form_token" value="$!services.csrf.token" />
+    <input type="hidden" name="xredirect" value="$doc.getURL()" />
+  </div>
+  <style>
+    .bx-settings label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid #e6e8ee; }
+    .bx-settings label span { display: block; }
+    .bx-settings label strong { display: block; }
+    .bx-settings .bx-hint { display: block; color: #5c6570; font-size: 0.92em; }
+  </style>
+<h2>Édition</h2>
+#set ($bxFields = [
+    ['sideToolbar', "Barre à droite", "En édition classique, fixe la barre d’outils en une colonne à droite."],
+    ['alertBlocks', "Blocs d’alerte", "Insère un bloc info, succès, attention ou erreur."],
+    ['macroShortcuts', "Raccourcis de macros", "Insère un bloc de code, un bloc info ou une table des matières."],
+    ['tablePasteClean', "Collage de tableau nettoyé", "Colle un tableau Excel ou Sheets sans largeurs de colonnes imposées."],
+    ['editorFullscreen', "Plein écran", "Affiche l’éditeur sur tout l’écran. Échap pour quitter."],
+    ['editorOutline', "Sommaire d’édition", "Liste les titres à côté de l’éditeur pour y sauter."]
+])
+#foreach ($bxField in $bxFields)
+  #set ($bxOn = true)
+  #if ($bxObject && "$!bxObject.getValue($bxField.get(0))" == '0')
+    #set ($bxOn = false)
+  #end
+  <label>
+    <input type="hidden" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="0" />
+    <input type="checkbox" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="1"#if ($bxOn) checked="checked"#end />
+    <span><strong>$escapetool.xml($bxField.get(1))</strong><span class="bx-hint">$escapetool.xml($bxField.get(2))</span></span>
+  </label>
+#end
+<h2>Tableaux</h2>
+#set ($bxFields = [
+    ['tableRows', "Ajout rapide de lignes", "Insère une ligne au-dessus ou en dessous de la ligne courante."],
+    ['tableColumns', "Ajout rapide de colonnes", "Insère une colonne à gauche ou à droite de la colonne courante."],
+    ['tableDelete', "Suppression de ligne ou de colonne", "Supprime la ligne ou la colonne courante."],
+    ['tableDuplicate', "Duplication de ligne ou de colonne", "Duplique la ligne ou la colonne courante."],
+    ['tableMove', "Déplacement de ligne ou de colonne", "Déplace la ligne ou la colonne courante."],
+    ['tableCellColors', "Couleur de fond des cellules", "Applique ou retire un fond coloré sur les cellules sélectionnées."],
+    ['tableBandColors', "Couleur de ligne ou de colonne", "Applique la dernière couleur à toute la ligne ou toute la colonne."],
+    ['tableMerge', "Fusion et scission", "Fusionne vers la droite ou le bas, ou scinde la cellule."],
+    ['tableShortcuts', "Raccourcis d’insertion", "Alt+Maj+flèches insère une ligne ou une colonne."]
+])
+#foreach ($bxField in $bxFields)
+  #set ($bxOn = true)
+  #if ($bxObject && "$!bxObject.getValue($bxField.get(0))" == '0')
+    #set ($bxOn = false)
+  #end
+  <label>
+    <input type="hidden" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="0" />
+    <input type="checkbox" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="1"#if ($bxOn) checked="checked"#end />
+    <span><strong>$escapetool.xml($bxField.get(1))</strong><span class="bx-hint">$escapetool.xml($bxField.get(2))</span></span>
+  </label>
+#end
+<h2>Lecture</h2>
+#set ($bxFields = [
+    ['stickyHeaders', "En-tête de tableau fixe", "Garde la première ligne de titres visible pendant le défilement."],
+    ['copyTableTsv', "Copier le tableau", "Copie un tableau de la page pour le coller dans un tableur."],
+    ['pageSearch', "Recherche dans la page", "Ctrl+Maj+F ou Cmd+Maj+F cherche dans la page ouverte."],
+    ['restoreReadPosition', "Retour à l’endroit lu", "Après une sauvegarde, retrouve la position de lecture."]
+])
+#foreach ($bxField in $bxFields)
+  #set ($bxOn = true)
+  #if ($bxObject && "$!bxObject.getValue($bxField.get(0))" == '0')
+    #set ($bxOn = false)
+  #end
+  <label>
+    <input type="hidden" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="0" />
+    <input type="checkbox" name="BetterxWiki.UserSettingsClass_${bxNumber}_$bxField.get(0)" value="1"#if ($bxOn) checked="checked"#end />
+    <span><strong>$escapetool.xml($bxField.get(1))</strong><span class="bx-hint">$escapetool.xml($bxField.get(2))</span></span>
+  </label>
+#end
+  <p><input type="submit" class="btn btn-primary" value="Enregistrer" /></p>
+</form>
+{{/html}}
+{{/velocity}}
+]]></content>
+
+</xwikidoc>

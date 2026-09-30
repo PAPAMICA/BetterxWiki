@@ -1,49 +1,60 @@
 # Better xWiki
 
-Extension Chrome pour accélérer l’édition et la lecture dans xWiki. Chaque fonction s’active séparément depuis l’icône de l’extension, y compris sur un onglet déjà ouvert.
+Deux livraisons séparées :
 
-## Tableaux
+- `chrome/` : l’extension Chrome, avec les thèmes épuré et Dracula
+- `xwiki-plugin/` : le plugin XWiki, avec les mêmes outils d’édition et de lecture, sans habillage
 
-Quand le curseur est dans un tableau de l’éditeur visuel :
-
-- insérer, supprimer, dupliquer ou déplacer une ligne ou une colonne
-- colorer les cellules, ou toute la ligne et toute la colonne
-- fusionner ou scinder des cellules
-- raccourcis Alt+Maj+flèches pour insérer une ligne ou une colonne
-
-Les couleurs sont enregistrées comme couleur de fond, donc elles restent après la sauvegarde.
-
-## Édition
-
-- barre d’outils en colonne à droite, en édition classique
-- blocs d’alerte : info, succès, attention, erreur
-- raccourcis pour le code, l’info et la table des matières
-- collage d’un tableau Excel ou Sheets sans largeurs de colonnes imposées
-- plein écran de l’éditeur (Échap pour quitter)
-- sommaire des titres à côté de l’éditeur
-
-## Apparence
-
-Deux habillages, un seul à la fois. Les deux mettent la barre en sombre et posent le menu, la page et les tableaux dans des cartes arrondies.
-
-- Thème épuré : la même interface que Dracula, en clair (fond #e6e7ee, cartes blanches, accent bleu #007aff).
-- Thème Dracula : palette officielle (fond #282a36, cartes #44475a, liens cyan, accent violet #bd93f9).
-
-## Lecture
-
-- en-tête de tableau qui reste visible au défilement
-- bouton « Copier » au survol d’un tableau, pour le coller dans un tableur
-- recherche dans la page avec Ctrl+Maj+F ou Cmd+Maj+F
-- retour à l’endroit lu après une sauvegarde
-
-L’extension ne fait rien sur les sites qui ne sont pas xWiki.
-
-## Installation
+## Extension Chrome
 
 1. Ouvrir `chrome://extensions`.
 2. Activer le mode développeur.
-3. Choisir « Charger l’extension non empaquetée » et sélectionner ce dossier.
+3. Choisir « Charger l’extension non empaquetée » et sélectionner le dossier `chrome`.
 4. Recharger l’extension si elle était déjà installée.
-5. Ouvrir une page xWiki.
 
-Chrome 111 ou plus récent est requis.
+Chrome 111 ou plus récent est requis. Chaque option s’active depuis l’icône de l’extension, y compris sur un onglet déjà ouvert. L’extension ne fait rien sur les sites qui ne sont pas xWiki.
+
+## Plugin XWiki
+
+Le plugin suit le tutoriel [CreatingPlugins](https://www.xwiki.org/xwiki/bin/view/Documentation/DevGuide/Tutorials/CreatingPlugins/). La classe `com.xpn.xwiki.plugin.betterxwiki.BetterxWikiPlugin` étend `XWikiDefaultPlugin`. Dans Velocity, elle est disponible sous `$xwiki.betterxwiki`.
+
+Les réglages de chaque utilisateur sont une entrée du menu de droite, juste sous User Index. Cette entrée est une extension d’interface sur le point `org.xwiki.plaftorm.drawer`, avec `order=51000`.
+
+### Compiler
+
+Depuis `xwiki-plugin`, avec Java 17, Maven et Python 3 :
+
+```
+mvn package
+```
+
+Deux fichiers sont produits :
+
+- `betterxwiki-ui/target/betterxwiki-ui-1.0.0.xar`
+- `betterxwiki-plugin/target/betterxwiki-plugin-1.0.0.jar`
+
+### Installer les pages
+
+1. Se connecter avec un compte administrateur.
+2. Ouvrir Administration, puis Contenu, puis Importer.
+3. Importer `betterxwiki-ui-1.0.0.xar`.
+4. Ouvrir le menu de droite : Better xWiki est sous User Index.
+
+La page de réglages est enregistrée par XWiki.Admin. Ce compte doit garder les droits de programmation, car le premier affichage crée l’objet de réglages sur le profil de l’utilisateur.
+
+Les changements s’appliquent au prochain affichage d’une page.
+
+### Enregistrer le plugin Java
+
+1. Copier `betterxwiki-plugin-1.0.0.jar` dans `WEB-INF/lib`.
+2. Dans `WEB-INF/xwiki.cfg`, ajouter la classe à `xwiki.plugins` :
+
+```
+xwiki.plugins=com.xpn.xwiki.plugin.betterxwiki.BetterxWikiPlugin
+```
+
+Si la ligne existe déjà, ajouter la classe à la fin, séparée par une virgule.
+
+3. Redémarrer XWiki.
+
+`$xwiki.betterxwiki.settings` renvoie alors les réglages de l’utilisateur courant. Les pages importées lisent le même objet sur le profil.

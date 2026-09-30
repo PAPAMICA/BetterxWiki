@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.betterxwiki</groupId>
+  <artifactId>betterxwiki</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>Better xWiki</name>
+  <description>Outils d’édition et de lecture pour XWiki, sans habillage.</description>
+  <modules>
+    <module>betterxwiki-plugin</module>
+    <module>betterxwiki-ui</module>
+  </modules>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
+    <xwiki.version>18.6.0</xwiki.version>
+  </properties>
+</project>
