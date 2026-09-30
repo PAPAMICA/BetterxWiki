@@ -1,3 +1,5 @@
+if (!window.__betterxwikiLoaded) {
+window.__betterxwikiLoaded = true;
 // Réglages lus dans window.BETTERXWIKI_SETTINGS, posé par BetterxWiki.Client.
 const SETTINGS_NODE_ID = "betterxwiki-settings";
 const SETTINGS_EVENT = "betterxwiki-settings";
@@ -1492,4 +1494,6 @@ function findButton(action, label, text) {
   button.setAttribute("aria-label", label);
   button.textContent = text;
   return button;
+}
+
 }

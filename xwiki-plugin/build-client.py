@@ -124,7 +124,7 @@ def patch_script(source: str) -> str:
         "// Réglages lus dans window.BETTERXWIKI_SETTINGS, posé par BetterxWiki.Client.\n",
         1,
     )
-    return source
+    return "if (!window.__betterxwikiLoaded) {\nwindow.__betterxwikiLoaded = true;\n" + source + "\n}\n"
 
 
 def functional_css(source: str) -> str:
@@ -290,53 +290,66 @@ def settings_page():
 {rows}
 ])
 #foreach ($bxField in $bxFields)
-  #set ($bxOn = true)
-  #if ($bxObject && \"$!bxObject.getValue($bxField.get(0))\" == '0')
-    #set ($bxOn = false)
+  #set ($bxRaw = '')
+  #if ($bxObject)
+    #set ($bxRaw = "$!bxObject.getValue($bxField.get(0))")
   #end
+  #set ($bxOn = $bxRaw == '1' || $bxRaw == 'true')
   <label>
-    <input type="hidden" name="BetterxWiki.UserSettingsClass_${{bxNumber}}_$bxField.get(0)" value="0" />
-    <input type="checkbox" name="BetterxWiki.UserSettingsClass_${{bxNumber}}_$bxField.get(0)" value="1"#if ($bxOn) checked="checked"#end />
+    <input type="checkbox" name="$bxField.get(0)" value="1"#if ($bxOn) checked="checked"#end />
     <span><strong>$escapetool.xml($bxField.get(1))</strong><span class="bx-hint">$escapetool.xml($bxField.get(2))</span></span>
   </label>
 #end"""
         )
     body = "\n".join(groups)
+    names = ", ".join(f"'{feature[0]}'" for feature in FEATURES)
     content = f"""{{{{velocity}}}}
 #if ("$!xcontext.user" == '' || "$!xcontext.user" == 'XWiki.XWikiGuest')
 {{{{info}}}}Connectez-vous pour régler Better xWiki. Chaque compte a ses propres options.{{{{/info}}}}
 #stop
 #end
+#set ($bxNames = [{names}])
 #set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
 #set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
-#set ($bxChanged = false)
+#set ($bxPersist = $bxDoc.isNew())
 #if ($bxDoc.isNew())
   #set ($bxRights = $bxDoc.newObject('XWiki.XWikiRights'))
   #set ($discard = $bxRights.set('users', "$!xcontext.user"))
   #set ($discard = $bxRights.set('levels', 'view,edit'))
   #set ($discard = $bxRights.set('allow', 1))
   $bxDoc.setHidden(true)
-  #set ($bxChanged = true)
 #end
 #if (!$bxDoc.getObject('BetterxWiki.UserSettingsClass'))
   #set ($discard = $bxDoc.newObject('BetterxWiki.UserSettingsClass'))
-  #set ($bxChanged = true)
-#end
-#if ($bxChanged)
-  $bxDoc.save('Réglages Better xWiki', true)
-  #set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+  #set ($bxPersist = true)
 #end
 #set ($bxObject = $bxDoc.getObject('BetterxWiki.UserSettingsClass'))
-#set ($bxNumber = 0)
-#if ($bxObject)
-  #set ($bxNumber = $bxObject.number)
+#set ($bxSaved = false)
+#if ("$!request.bxSave" == '1' && $services.csrf.isTokenValid("$!request.form_token"))
+  #foreach ($bxName in $bxNames)
+    #if ("$!request.getParameter($bxName)" == '1')
+      $bxObject.set($bxName, '1')
+    #else
+      $bxObject.set($bxName, '0')
+    #end
+  #end
+  #set ($bxPersist = true)
+  #set ($bxSaved = true)
+#end
+#if ($bxPersist)
+  $bxDoc.save('Réglages Better xWiki', true)
+  #set ($bxDoc = $xwiki.getDocument($bxSettingsRef))
+  #set ($bxObject = $bxDoc.getObject('BetterxWiki.UserSettingsClass'))
 #end
 {{{{html clean="false"}}}}
 <p>Ces options ne concernent que votre compte. Elles s’appliquent au prochain affichage d’une page.</p>
-<form action="$bxDoc.getURL('save')" method="post" class="xform bx-settings">
+#if ($bxSaved)
+<p class="box successmessage">Réglages enregistrés.</p>
+#end
+<form action="$doc.getURL()" method="post" class="xform bx-settings">
   <div>
     <input type="hidden" name="form_token" value="$!services.csrf.token" />
-    <input type="hidden" name="xredirect" value="$doc.getURL()" />
+    <input type="hidden" name="bxSave" value="1" />
   </div>
   <style>
     .bx-settings label {{ display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid #e6e8ee; }}
@@ -486,9 +499,12 @@ window.BETTERXWIKI_SETTINGS = {{
 }};
 #end
 (function () {{
+  if (document.querySelector("script[data-betterxwiki-client]")) return;
   var node = document.createElement("script");
   node.async = false;
-  node.src = "$xwiki.getAttachmentURL('BetterxWiki.Client', 'betterxwiki.js')" + "?v=1.0.0";
+  node.setAttribute("data-betterxwiki-client", "1");
+  var url = "$xwiki.getAttachmentURL('BetterxWiki.Client', 'betterxwiki.js')";
+  node.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "v=1.0.1";
   document.documentElement.appendChild(node);
 }})();
 """
