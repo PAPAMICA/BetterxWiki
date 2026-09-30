@@ -22,7 +22,7 @@ Les réglages de chaque utilisateur sont une entrée du menu de droite, juste so
 
 ### Compiler
 
-Depuis `xwiki-plugin`, avec Java 17, Maven et Python 3 :
+Depuis `xwiki-plugin`, avec Java 17, Maven et Python 3. Les bibliothèques XWiki sont lues depuis `https://maven.xwiki.org`, pas depuis Maven Central.
 
 ```
 mvn package
