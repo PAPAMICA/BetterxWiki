@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import base64
+import zipfile
 
 ROOT = Path(__file__).resolve().parent
 CHROME = ROOT.parent / "chrome" / "src"
@@ -675,7 +676,36 @@ def main():
     (OUT / "Settings.xml").write_text(settings_page(), encoding="utf-8")
     (OUT / "Drawer.xml").write_text(drawer_page(), encoding="utf-8")
     (OUT / "Client.xml").write_text(client_page(script, css), encoding="utf-8")
+    xar_path = write_xar()
     print(f"script {len(script)} css {len(css)} -> {OUT}")
+    print(f"xar {xar_path}")
+
+
+def write_xar():
+    pages = sorted(path.stem for path in OUT.glob("*.xml"))
+    files = "\n".join(f'    <file defaultAction="0" language="">BetterxWiki.{name}</file>' for name in pages)
+    package = f"""<?xml version="1.0" encoding="UTF-8"?>
+<package>
+  <infos>
+    <name>Better xWiki</name>
+    <description>Outils d’édition et de lecture pour XWiki.</description>
+    <licence/>
+    <author>XWiki.Admin</author>
+    <version>1.0.0</version>
+    <backupPack>false</backupPack>
+  </infos>
+  <files>
+{files}
+  </files>
+</package>
+"""
+    xar_path = ROOT / "betterxwiki-ui" / "target" / "betterxwiki-ui-1.0.0.xar"
+    xar_path.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(xar_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("package.xml", package)
+        for path in sorted(OUT.glob("*.xml")):
+            archive.write(path, f"BetterxWiki/{path.name}")
+    return xar_path
 
 
 if __name__ == "__main__":
