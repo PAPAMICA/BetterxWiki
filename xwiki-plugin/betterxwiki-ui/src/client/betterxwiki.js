@@ -108,7 +108,17 @@ let findBar;
 let searchButton;
 let copyButton;
 
-if (window.XWiki && document.body) {
+let bootTries = 0;
+function bootBetterxWiki() {
+  if (!document.body || !window.XWiki) {
+    bootTries += 1;
+    if (bootTries > 200) return;
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootBetterxWiki, { once: true });
+    else window.setTimeout(bootBetterxWiki, 50);
+    return;
+  }
+  if (window.__betterxwikiMounted) return;
+  window.__betterxwikiMounted = true;
   toolbar = buildToolbar();
   editorBar = buildEditorBar();
   outline = buildOutline();
@@ -117,6 +127,7 @@ if (window.XWiki && document.body) {
   copyButton = buildCopyButton();
   mount();
 }
+bootBetterxWiki();
 
 function mount() {
   document.body.append(toolbar, editorBar, outline, findBar, searchButton, copyButton);

@@ -124,6 +124,38 @@ def patch_script(source: str) -> str:
         "// Réglages lus dans window.BETTERXWIKI_SETTINGS, posé par BetterxWiki.Client.\n",
         1,
     )
+    old_boot = """if (window.XWiki && document.body) {
+  toolbar = buildToolbar();
+  editorBar = buildEditorBar();
+  outline = buildOutline();
+  findBar = buildFindBar();
+  searchButton = buildSearchButton();
+  copyButton = buildCopyButton();
+  mount();
+}"""
+    new_boot = """let bootTries = 0;
+function bootBetterxWiki() {
+  if (!document.body || !window.XWiki) {
+    bootTries += 1;
+    if (bootTries > 200) return;
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootBetterxWiki, { once: true });
+    else window.setTimeout(bootBetterxWiki, 50);
+    return;
+  }
+  if (window.__betterxwikiMounted) return;
+  window.__betterxwikiMounted = true;
+  toolbar = buildToolbar();
+  editorBar = buildEditorBar();
+  outline = buildOutline();
+  findBar = buildFindBar();
+  searchButton = buildSearchButton();
+  copyButton = buildCopyButton();
+  mount();
+}
+bootBetterxWiki();"""
+    if old_boot not in source:
+        raise SystemExit("démarrage du script introuvable")
+    source = source.replace(old_boot, new_boot, 1)
     return "if (!window.__betterxwikiLoaded) {\nwindow.__betterxwikiLoaded = true;\n" + source + "\n}\n"
 
 
@@ -479,32 +511,30 @@ category=local</parameters>
 
 
 def client_page(script: str, css: str):
-    names = [feature[0] for feature in FEATURES]
-    rows = "\n".join(
-        f'"{name}": #if ($bxObj && "$!bxObj.getValue(\'{name}\')" == \'0\')false#{{else}}true#end,'
-        for name in names
-    )
-    bootstrap = f"""#set ($bx = $xwiki.get('betterxwiki'))
-#if ($bx)
-window.BETTERXWIKI_SETTINGS = $jsontool.serialize($bx.settings);
-#else
+    names = ", ".join(f"'{feature[0]}'" for feature in FEATURES)
+    bootstrap = f"""#set ($bxNames = [{names}])
 #set ($bxObj = false)
 #if ($xcontext.userReference)
   #set ($bxSettingsRef = $services.model.createDocumentReference($xcontext.database, ['BetterxWiki', 'UserSettings'], $xcontext.userReference.name))
   #set ($bxSettingsDoc = $xwiki.getDocument($bxSettingsRef))
   #set ($bxObj = $bxSettingsDoc.getObject('BetterxWiki.UserSettingsClass'))
 #end
-window.BETTERXWIKI_SETTINGS = {{
-{rows}
-}};
+#set ($bxSettings = {{}})
+#foreach ($bxName in $bxNames)
+  #if ($bxObj && "$!bxObj.getValue($bxName)" == '0')
+    #set ($discard = $bxSettings.put($bxName, false))
+  #else
+    #set ($discard = $bxSettings.put($bxName, true))
+  #end
 #end
+window.BETTERXWIKI_SETTINGS = $jsontool.serialize($bxSettings);
 (function () {{
   if (document.querySelector("script[data-betterxwiki-client]")) return;
   var node = document.createElement("script");
   node.async = false;
   node.setAttribute("data-betterxwiki-client", "1");
   var url = "$xwiki.getAttachmentURL('BetterxWiki.Client', 'betterxwiki.js')";
-  node.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "v=1.0.1";
+  node.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "v=1.0.2";
   document.documentElement.appendChild(node);
 }})();
 """
@@ -709,8 +739,8 @@ window.BETTERXWIKI_SETTINGS = {{
     return page(
         "Client",
         "Better xWiki",
-        True,
-        "",
+        False,
+        "Ce document charge les outils Better xWiki sur les pages du wiki.",
         extra + required_right("BetterxWiki.Client", "8f3c2a10-6b4e-4d77-9a21-b7e4c0d11a11"),
     )
 
