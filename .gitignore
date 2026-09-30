@@ -1,3 +1,2 @@
-page-xwiki.html
-*.xar
 target/
+.DS_Store
